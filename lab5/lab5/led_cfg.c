@@ -1,0 +1,13 @@
+#include "led_cfg.h"
+#include "private.h"
+
+LedCfg_t ledCfg[NUM_OF_LEDS] = {
+	{PORTA_PIN_0, PIN_OUTPUT},
+	{PORTA_PIN_1, PIN_OUTPUT},
+	{PORTA_PIN_2, PIN_OUTPUT},
+	{PORTA_PIN_3, PIN_OUTPUT},
+	{PORTA_PIN_4, PIN_OUTPUT},
+	{PORTA_PIN_5, PIN_OUTPUT},
+	{PORTA_PIN_6, PIN_OUTPUT},
+	{PORTA_PIN_7, PIN_OUTPUT}
+};
