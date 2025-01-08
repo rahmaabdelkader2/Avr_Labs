@@ -1,0 +1,873 @@
+
+lab6.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000026  00800100  0000045a  000004ce  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000045a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000004f4  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000524  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000c8  00000000  00000000  00000560  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000e98  00000000  00000000  00000628  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000aea  00000000  00000000  000014c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000007d7  00000000  00000000  00001faa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000128  00000000  00000000  00002784  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000080b  00000000  00000000  000028ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000c9c  00000000  00000000  000030b7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000088  00000000  00000000  00003d53  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
+   2:	00 00       	nop
+   4:	58 c0       	rjmp	.+176    	; 0xb6 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	56 c0       	rjmp	.+172    	; 0xb6 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	54 c0       	rjmp	.+168    	; 0xb6 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	52 c0       	rjmp	.+164    	; 0xb6 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	50 c0       	rjmp	.+160    	; 0xb6 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	4e c0       	rjmp	.+156    	; 0xb6 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	4c c0       	rjmp	.+152    	; 0xb6 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	4a c0       	rjmp	.+148    	; 0xb6 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	48 c0       	rjmp	.+144    	; 0xb6 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	46 c0       	rjmp	.+140    	; 0xb6 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	44 c0       	rjmp	.+136    	; 0xb6 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	42 c0       	rjmp	.+132    	; 0xb6 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	40 c0       	rjmp	.+128    	; 0xb6 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	3e c0       	rjmp	.+124    	; 0xb6 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	3c c0       	rjmp	.+120    	; 0xb6 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	3a c0       	rjmp	.+116    	; 0xb6 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	38 c0       	rjmp	.+112    	; 0xb6 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	36 c0       	rjmp	.+108    	; 0xb6 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	34 c0       	rjmp	.+104    	; 0xb6 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	32 c0       	rjmp	.+100    	; 0xb6 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	30 c0       	rjmp	.+96     	; 0xb6 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	2e c0       	rjmp	.+92     	; 0xb6 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	2c c0       	rjmp	.+88     	; 0xb6 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	2a c0       	rjmp	.+84     	; 0xb6 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	28 c0       	rjmp	.+80     	; 0xb6 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	26 c0       	rjmp	.+76     	; 0xb6 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	24 c0       	rjmp	.+72     	; 0xb6 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	22 c0       	rjmp	.+68     	; 0xb6 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	20 c0       	rjmp	.+64     	; 0xb6 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	1e c0       	rjmp	.+60     	; 0xb6 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	1c c0       	rjmp	.+56     	; 0xb6 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	1a c0       	rjmp	.+52     	; 0xb6 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	18 c0       	rjmp	.+48     	; 0xb6 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	16 c0       	rjmp	.+44     	; 0xb6 <__bad_interrupt>
+	...
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	ea e5       	ldi	r30, 0x5A	; 90
+  a0:	f4 e0       	ldi	r31, 0x04	; 4
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a6 32       	cpi	r26, 0x26	; 38
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+  b2:	6f d0       	rcall	.+222    	; 0x192 <main>
+  b4:	d0 c1       	rjmp	.+928    	; 0x456 <_exit>
+
+000000b6 <__bad_interrupt>:
+  b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
+
+000000b8 <MDIO_enuSetPinValue>:
+
+/*
+ * function to set pin value logic high/low
+ */
+void MDIO_enuSetPinValue(u8 Copy_enuPortNum, u8 Copy_enuPinNum, u8 Copy_enuState) {
+    switch (Copy_enuPortNum) {
+  b8:	81 30       	cpi	r24, 0x01	; 1
+  ba:	01 f1       	breq	.+64     	; 0xfc <MDIO_enuSetPinValue+0x44>
+  bc:	30 f0       	brcs	.+12     	; 0xca <MDIO_enuSetPinValue+0x12>
+  be:	82 30       	cpi	r24, 0x02	; 2
+  c0:	b1 f1       	breq	.+108    	; 0x12e <MDIO_enuSetPinValue+0x76>
+  c2:	83 30       	cpi	r24, 0x03	; 3
+  c4:	09 f4       	brne	.+2      	; 0xc8 <MDIO_enuSetPinValue+0x10>
+  c6:	4c c0       	rjmp	.+152    	; 0x160 <MDIO_enuSetPinValue+0xa8>
+  c8:	08 95       	ret
+        case 0:
+            if (Copy_enuState) PORTA |= (1 << Copy_enuPinNum);
+  ca:	44 23       	and	r20, r20
+  cc:	59 f0       	breq	.+22     	; 0xe4 <MDIO_enuSetPinValue+0x2c>
+  ce:	2b b3       	in	r18, 0x1b	; 27
+  d0:	81 e0       	ldi	r24, 0x01	; 1
+  d2:	90 e0       	ldi	r25, 0x00	; 0
+  d4:	02 c0       	rjmp	.+4      	; 0xda <MDIO_enuSetPinValue+0x22>
+  d6:	88 0f       	add	r24, r24
+  d8:	99 1f       	adc	r25, r25
+  da:	6a 95       	dec	r22
+  dc:	e2 f7       	brpl	.-8      	; 0xd6 <MDIO_enuSetPinValue+0x1e>
+  de:	82 2b       	or	r24, r18
+  e0:	8b bb       	out	0x1b, r24	; 27
+  e2:	08 95       	ret
+            else PORTA &= ~(1 << Copy_enuPinNum);
+  e4:	2b b3       	in	r18, 0x1b	; 27
+  e6:	81 e0       	ldi	r24, 0x01	; 1
+  e8:	90 e0       	ldi	r25, 0x00	; 0
+  ea:	02 c0       	rjmp	.+4      	; 0xf0 <MDIO_enuSetPinValue+0x38>
+  ec:	88 0f       	add	r24, r24
+  ee:	99 1f       	adc	r25, r25
+  f0:	6a 95       	dec	r22
+  f2:	e2 f7       	brpl	.-8      	; 0xec <MDIO_enuSetPinValue+0x34>
+  f4:	80 95       	com	r24
+  f6:	82 23       	and	r24, r18
+  f8:	8b bb       	out	0x1b, r24	; 27
+  fa:	08 95       	ret
+            break;
+
+        case 1:
+            if (Copy_enuState) PORTB |= (1 << Copy_enuPinNum);
+  fc:	44 23       	and	r20, r20
+  fe:	59 f0       	breq	.+22     	; 0x116 <MDIO_enuSetPinValue+0x5e>
+ 100:	28 b3       	in	r18, 0x18	; 24
+ 102:	81 e0       	ldi	r24, 0x01	; 1
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+ 106:	02 c0       	rjmp	.+4      	; 0x10c <MDIO_enuSetPinValue+0x54>
+ 108:	88 0f       	add	r24, r24
+ 10a:	99 1f       	adc	r25, r25
+ 10c:	6a 95       	dec	r22
+ 10e:	e2 f7       	brpl	.-8      	; 0x108 <MDIO_enuSetPinValue+0x50>
+ 110:	82 2b       	or	r24, r18
+ 112:	88 bb       	out	0x18, r24	; 24
+ 114:	08 95       	ret
+            else PORTB &= ~(1 << Copy_enuPinNum);
+ 116:	28 b3       	in	r18, 0x18	; 24
+ 118:	81 e0       	ldi	r24, 0x01	; 1
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+ 11c:	02 c0       	rjmp	.+4      	; 0x122 <MDIO_enuSetPinValue+0x6a>
+ 11e:	88 0f       	add	r24, r24
+ 120:	99 1f       	adc	r25, r25
+ 122:	6a 95       	dec	r22
+ 124:	e2 f7       	brpl	.-8      	; 0x11e <MDIO_enuSetPinValue+0x66>
+ 126:	80 95       	com	r24
+ 128:	82 23       	and	r24, r18
+ 12a:	88 bb       	out	0x18, r24	; 24
+ 12c:	08 95       	ret
+            break;
+
+        case 2:
+            if (Copy_enuState) PORTC |= (1 << Copy_enuPinNum);
+ 12e:	44 23       	and	r20, r20
+ 130:	59 f0       	breq	.+22     	; 0x148 <MDIO_enuSetPinValue+0x90>
+ 132:	25 b3       	in	r18, 0x15	; 21
+ 134:	81 e0       	ldi	r24, 0x01	; 1
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+ 138:	02 c0       	rjmp	.+4      	; 0x13e <MDIO_enuSetPinValue+0x86>
+ 13a:	88 0f       	add	r24, r24
+ 13c:	99 1f       	adc	r25, r25
+ 13e:	6a 95       	dec	r22
+ 140:	e2 f7       	brpl	.-8      	; 0x13a <MDIO_enuSetPinValue+0x82>
+ 142:	82 2b       	or	r24, r18
+ 144:	85 bb       	out	0x15, r24	; 21
+ 146:	08 95       	ret
+            else PORTC &= ~(1 << Copy_enuPinNum);
+ 148:	25 b3       	in	r18, 0x15	; 21
+ 14a:	81 e0       	ldi	r24, 0x01	; 1
+ 14c:	90 e0       	ldi	r25, 0x00	; 0
+ 14e:	02 c0       	rjmp	.+4      	; 0x154 <MDIO_enuSetPinValue+0x9c>
+ 150:	88 0f       	add	r24, r24
+ 152:	99 1f       	adc	r25, r25
+ 154:	6a 95       	dec	r22
+ 156:	e2 f7       	brpl	.-8      	; 0x150 <MDIO_enuSetPinValue+0x98>
+ 158:	80 95       	com	r24
+ 15a:	82 23       	and	r24, r18
+ 15c:	85 bb       	out	0x15, r24	; 21
+ 15e:	08 95       	ret
+            break;
+
+        case 3:
+            if (Copy_enuState) PORTD |= (1 << Copy_enuPinNum);
+ 160:	44 23       	and	r20, r20
+ 162:	59 f0       	breq	.+22     	; 0x17a <MDIO_enuSetPinValue+0xc2>
+ 164:	22 b3       	in	r18, 0x12	; 18
+ 166:	81 e0       	ldi	r24, 0x01	; 1
+ 168:	90 e0       	ldi	r25, 0x00	; 0
+ 16a:	02 c0       	rjmp	.+4      	; 0x170 <MDIO_enuSetPinValue+0xb8>
+ 16c:	88 0f       	add	r24, r24
+ 16e:	99 1f       	adc	r25, r25
+ 170:	6a 95       	dec	r22
+ 172:	e2 f7       	brpl	.-8      	; 0x16c <MDIO_enuSetPinValue+0xb4>
+ 174:	82 2b       	or	r24, r18
+ 176:	82 bb       	out	0x12, r24	; 18
+ 178:	08 95       	ret
+            else PORTD &= ~(1 << Copy_enuPinNum);
+ 17a:	22 b3       	in	r18, 0x12	; 18
+ 17c:	81 e0       	ldi	r24, 0x01	; 1
+ 17e:	90 e0       	ldi	r25, 0x00	; 0
+ 180:	02 c0       	rjmp	.+4      	; 0x186 <MDIO_enuSetPinValue+0xce>
+ 182:	88 0f       	add	r24, r24
+ 184:	99 1f       	adc	r25, r25
+ 186:	6a 95       	dec	r22
+ 188:	e2 f7       	brpl	.-8      	; 0x182 <MDIO_enuSetPinValue+0xca>
+ 18a:	80 95       	com	r24
+ 18c:	82 23       	and	r24, r18
+ 18e:	82 bb       	out	0x12, r24	; 18
+ 190:	08 95       	ret
+
+00000192 <main>:
+#include "seven_seg.h"
+#include <util/delay.h>
+
+int main(void) {
+	// Initialize the seven-segment displays
+	HSEVENSEG_vInit();
+ 192:	88 d0       	rcall	.+272    	; 0x2a4 <HSEVENSEG_vInit>
+	// Test single-digit display on the first seven-segment
+	// HSEVENSEG_vSetValue(0, 5); // Display 5 on the first seven-segment
+
+	// // Wait for some time to observe the output
+	// _delay_ms(500);
+	HSEVENSEG_enuSetMultiDigitValue(1234);
+ 194:	82 ed       	ldi	r24, 0xD2	; 210
+ 196:	94 e0       	ldi	r25, 0x04	; 4
+ 198:	dc d0       	rcall	.+440    	; 0x352 <HSEVENSEG_enuSetMultiDigitValue>
+ 19a:	ff cf       	rjmp	.-2      	; 0x19a <main+0x8>
+
+0000019c <MPORT_enuSetPortConfigration>:
+
+	return Ret_enuError;
+}
+MPORT_enuErrorStatus_t MPORT_enuSetPortConfigration(u8 Copy_enuPortNum_PinNum, u8 Copy_enuConfigration) {
+	//extract port number
+	u8 port_Number = (Copy_enuPortNum_PinNum >> 4) & 0x0F;
+ 19c:	98 2f       	mov	r25, r24
+ 19e:	92 95       	swap	r25
+ 1a0:	9f 70       	andi	r25, 0x0F	; 15
+	//extract pin number
+	u8 pin_Number = Copy_enuPortNum_PinNum & 0x0F;
+ 1a2:	8f 70       	andi	r24, 0x0F	; 15
+	//validate the configuration
+	if (Copy_enuConfigration != PIN_INPUT && Copy_enuConfigration != PIN_OUTPUT)
+ 1a4:	62 30       	cpi	r22, 0x02	; 2
+ 1a6:	08 f0       	brcs	.+2      	; 0x1aa <MPORT_enuSetPortConfigration+0xe>
+ 1a8:	79 c0       	rjmp	.+242    	; 0x29c <MPORT_enuSetPortConfigration+0x100>
+	{
+		return MPORT_ERROR_INVALID_DIRECTION;
+	}
+	//set the configuration based on the extracted port number
+	switch (port_Number)
+ 1aa:	91 30       	cpi	r25, 0x01	; 1
+ 1ac:	d1 f0       	breq	.+52     	; 0x1e2 <MPORT_enuSetPortConfigration+0x46>
+ 1ae:	30 f0       	brcs	.+12     	; 0x1bc <MPORT_enuSetPortConfigration+0x20>
+ 1b0:	92 30       	cpi	r25, 0x02	; 2
+ 1b2:	b1 f1       	breq	.+108    	; 0x220 <MPORT_enuSetPortConfigration+0x84>
+ 1b4:	93 30       	cpi	r25, 0x03	; 3
+ 1b6:	09 f4       	brne	.+2      	; 0x1ba <MPORT_enuSetPortConfigration+0x1e>
+ 1b8:	52 c0       	rjmp	.+164    	; 0x25e <MPORT_enuSetPortConfigration+0xc2>
+ 1ba:	72 c0       	rjmp	.+228    	; 0x2a0 <MPORT_enuSetPortConfigration+0x104>
+	{
+		case 0: // PORTA
+		if (Copy_enuConfigration == PIN_OUTPUT)
+ 1bc:	61 30       	cpi	r22, 0x01	; 1
+ 1be:	71 f4       	brne	.+28     	; 0x1dc <MPORT_enuSetPortConfigration+0x40>
+		SET_BIT(DDRA, pin_Number);
+ 1c0:	4a b3       	in	r20, 0x1a	; 26
+ 1c2:	21 e0       	ldi	r18, 0x01	; 1
+ 1c4:	30 e0       	ldi	r19, 0x00	; 0
+ 1c6:	b9 01       	movw	r22, r18
+ 1c8:	02 c0       	rjmp	.+4      	; 0x1ce <MPORT_enuSetPortConfigration+0x32>
+ 1ca:	66 0f       	add	r22, r22
+ 1cc:	77 1f       	adc	r23, r23
+ 1ce:	8a 95       	dec	r24
+ 1d0:	e2 f7       	brpl	.-8      	; 0x1ca <MPORT_enuSetPortConfigration+0x2e>
+ 1d2:	cb 01       	movw	r24, r22
+ 1d4:	84 2b       	or	r24, r20
+ 1d6:	8a bb       	out	0x1a, r24	; 26
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	08 95       	ret
+	{
+		case 0: // PORTA
+		if (Copy_enuConfigration == PIN_OUTPUT)
+		SET_BIT(DDRA, pin_Number);
+		else
+		(DDRA, pin_Number);
+ 1dc:	8a b3       	in	r24, 0x1a	; 26
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+ 1e0:	08 95       	ret
+		else
+		(DDRA, pin_Number);
+		break;
+
+		case 1: // PORTB
+		if (Copy_enuConfigration == PIN_OUTPUT)
+ 1e2:	61 30       	cpi	r22, 0x01	; 1
+ 1e4:	71 f4       	brne	.+28     	; 0x202 <MPORT_enuSetPortConfigration+0x66>
+		SET_BIT(DDRB, pin_Number);
+ 1e6:	47 b3       	in	r20, 0x17	; 23
+ 1e8:	21 e0       	ldi	r18, 0x01	; 1
+ 1ea:	30 e0       	ldi	r19, 0x00	; 0
+ 1ec:	b9 01       	movw	r22, r18
+ 1ee:	02 c0       	rjmp	.+4      	; 0x1f4 <MPORT_enuSetPortConfigration+0x58>
+ 1f0:	66 0f       	add	r22, r22
+ 1f2:	77 1f       	adc	r23, r23
+ 1f4:	8a 95       	dec	r24
+ 1f6:	e2 f7       	brpl	.-8      	; 0x1f0 <MPORT_enuSetPortConfigration+0x54>
+ 1f8:	cb 01       	movw	r24, r22
+ 1fa:	84 2b       	or	r24, r20
+ 1fc:	87 bb       	out	0x17, r24	; 23
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 1fe:	80 e0       	ldi	r24, 0x00	; 0
+ 200:	08 95       	ret
+
+		case 1: // PORTB
+		if (Copy_enuConfigration == PIN_OUTPUT)
+		SET_BIT(DDRB, pin_Number);
+		else
+		CLEAR_BIT(DDRB, pin_Number);
+ 202:	47 b3       	in	r20, 0x17	; 23
+ 204:	21 e0       	ldi	r18, 0x01	; 1
+ 206:	30 e0       	ldi	r19, 0x00	; 0
+ 208:	b9 01       	movw	r22, r18
+ 20a:	02 c0       	rjmp	.+4      	; 0x210 <MPORT_enuSetPortConfigration+0x74>
+ 20c:	66 0f       	add	r22, r22
+ 20e:	77 1f       	adc	r23, r23
+ 210:	8a 95       	dec	r24
+ 212:	e2 f7       	brpl	.-8      	; 0x20c <MPORT_enuSetPortConfigration+0x70>
+ 214:	cb 01       	movw	r24, r22
+ 216:	80 95       	com	r24
+ 218:	84 23       	and	r24, r20
+ 21a:	87 bb       	out	0x17, r24	; 23
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 21c:	80 e0       	ldi	r24, 0x00	; 0
+ 21e:	08 95       	ret
+		else
+		CLEAR_BIT(DDRB, pin_Number);
+		break;
+
+		case 2: // PORTC
+		if (Copy_enuConfigration == PIN_OUTPUT)
+ 220:	61 30       	cpi	r22, 0x01	; 1
+ 222:	71 f4       	brne	.+28     	; 0x240 <MPORT_enuSetPortConfigration+0xa4>
+		SET_BIT(DDRC, pin_Number);
+ 224:	44 b3       	in	r20, 0x14	; 20
+ 226:	21 e0       	ldi	r18, 0x01	; 1
+ 228:	30 e0       	ldi	r19, 0x00	; 0
+ 22a:	b9 01       	movw	r22, r18
+ 22c:	02 c0       	rjmp	.+4      	; 0x232 <MPORT_enuSetPortConfigration+0x96>
+ 22e:	66 0f       	add	r22, r22
+ 230:	77 1f       	adc	r23, r23
+ 232:	8a 95       	dec	r24
+ 234:	e2 f7       	brpl	.-8      	; 0x22e <MPORT_enuSetPortConfigration+0x92>
+ 236:	cb 01       	movw	r24, r22
+ 238:	84 2b       	or	r24, r20
+ 23a:	84 bb       	out	0x14, r24	; 20
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 23c:	80 e0       	ldi	r24, 0x00	; 0
+ 23e:	08 95       	ret
+
+		case 2: // PORTC
+		if (Copy_enuConfigration == PIN_OUTPUT)
+		SET_BIT(DDRC, pin_Number);
+		else
+		CLEAR_BIT(DDRC, pin_Number);
+ 240:	44 b3       	in	r20, 0x14	; 20
+ 242:	21 e0       	ldi	r18, 0x01	; 1
+ 244:	30 e0       	ldi	r19, 0x00	; 0
+ 246:	b9 01       	movw	r22, r18
+ 248:	02 c0       	rjmp	.+4      	; 0x24e <MPORT_enuSetPortConfigration+0xb2>
+ 24a:	66 0f       	add	r22, r22
+ 24c:	77 1f       	adc	r23, r23
+ 24e:	8a 95       	dec	r24
+ 250:	e2 f7       	brpl	.-8      	; 0x24a <MPORT_enuSetPortConfigration+0xae>
+ 252:	cb 01       	movw	r24, r22
+ 254:	80 95       	com	r24
+ 256:	84 23       	and	r24, r20
+ 258:	84 bb       	out	0x14, r24	; 20
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 25a:	80 e0       	ldi	r24, 0x00	; 0
+ 25c:	08 95       	ret
+		else
+		CLEAR_BIT(DDRC, pin_Number);
+		break;
+
+		case 3: // PORTD
+		if (Copy_enuConfigration == PIN_OUTPUT)
+ 25e:	61 30       	cpi	r22, 0x01	; 1
+ 260:	71 f4       	brne	.+28     	; 0x27e <MPORT_enuSetPortConfigration+0xe2>
+		SET_BIT(DDRD, pin_Number);
+ 262:	41 b3       	in	r20, 0x11	; 17
+ 264:	21 e0       	ldi	r18, 0x01	; 1
+ 266:	30 e0       	ldi	r19, 0x00	; 0
+ 268:	b9 01       	movw	r22, r18
+ 26a:	02 c0       	rjmp	.+4      	; 0x270 <MPORT_enuSetPortConfigration+0xd4>
+ 26c:	66 0f       	add	r22, r22
+ 26e:	77 1f       	adc	r23, r23
+ 270:	8a 95       	dec	r24
+ 272:	e2 f7       	brpl	.-8      	; 0x26c <MPORT_enuSetPortConfigration+0xd0>
+ 274:	cb 01       	movw	r24, r22
+ 276:	84 2b       	or	r24, r20
+ 278:	81 bb       	out	0x11, r24	; 17
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 27a:	80 e0       	ldi	r24, 0x00	; 0
+ 27c:	08 95       	ret
+
+		case 3: // PORTD
+		if (Copy_enuConfigration == PIN_OUTPUT)
+		SET_BIT(DDRD, pin_Number);
+		else
+		CLEAR_BIT(DDRD, pin_Number);
+ 27e:	41 b3       	in	r20, 0x11	; 17
+ 280:	21 e0       	ldi	r18, 0x01	; 1
+ 282:	30 e0       	ldi	r19, 0x00	; 0
+ 284:	b9 01       	movw	r22, r18
+ 286:	02 c0       	rjmp	.+4      	; 0x28c <MPORT_enuSetPortConfigration+0xf0>
+ 288:	66 0f       	add	r22, r22
+ 28a:	77 1f       	adc	r23, r23
+ 28c:	8a 95       	dec	r24
+ 28e:	e2 f7       	brpl	.-8      	; 0x288 <MPORT_enuSetPortConfigration+0xec>
+ 290:	cb 01       	movw	r24, r22
+ 292:	80 95       	com	r24
+ 294:	84 23       	and	r24, r20
+ 296:	81 bb       	out	0x11, r24	; 17
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+		break;
+	}
+	return MPORT_OK;
+ 298:	80 e0       	ldi	r24, 0x00	; 0
+ 29a:	08 95       	ret
+	//extract pin number
+	u8 pin_Number = Copy_enuPortNum_PinNum & 0x0F;
+	//validate the configuration
+	if (Copy_enuConfigration != PIN_INPUT && Copy_enuConfigration != PIN_OUTPUT)
+	{
+		return MPORT_ERROR_INVALID_DIRECTION;
+ 29c:	87 e0       	ldi	r24, 0x07	; 7
+ 29e:	08 95       	ret
+		else
+		CLEAR_BIT(DDRD, pin_Number);
+		break;
+
+		default:
+		return MPORT_ERROR_INVALID_PIN;
+ 2a0:	86 e0       	ldi	r24, 0x06	; 6
+		break;
+	}
+	return MPORT_OK;
+
+ 2a2:	08 95       	ret
+
+000002a4 <HSEVENSEG_vInit>:
+	0x90  // 9
+	#endif
+};
+
+/* Initialization Function */
+void HSEVENSEG_vInit(void) {
+ 2a4:	cf 93       	push	r28
+ 2a6:	df 93       	push	r29
+	for (u8 display = 0; display < HSEVENSEG_MAX_DISPLAYS; display++) {
+ 2a8:	d0 e0       	ldi	r29, 0x00	; 0
+ 2aa:	1a c0       	rjmp	.+52     	; 0x2e0 <HSEVENSEG_vInit+0x3c>
+		for (u8 segment = 0; segment < 7; segment++) {
+			MPORT_enuSetPortConfigration(SevenSegPins[display][segment] , PIN_OUTPUT);
+ 2ac:	8d 2f       	mov	r24, r29
+ 2ae:	90 e0       	ldi	r25, 0x00	; 0
+ 2b0:	fc 01       	movw	r30, r24
+ 2b2:	ee 0f       	add	r30, r30
+ 2b4:	ff 1f       	adc	r31, r31
+ 2b6:	ee 0f       	add	r30, r30
+ 2b8:	ff 1f       	adc	r31, r31
+ 2ba:	ee 0f       	add	r30, r30
+ 2bc:	ff 1f       	adc	r31, r31
+ 2be:	e8 1b       	sub	r30, r24
+ 2c0:	f9 0b       	sbc	r31, r25
+ 2c2:	e6 5f       	subi	r30, 0xF6	; 246
+ 2c4:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2c6:	ec 0f       	add	r30, r28
+ 2c8:	f1 1d       	adc	r31, r1
+ 2ca:	80 81       	ld	r24, Z
+ 2cc:	61 e0       	ldi	r22, 0x01	; 1
+ 2ce:	70 e0       	ldi	r23, 0x00	; 0
+ 2d0:	90 e0       	ldi	r25, 0x00	; 0
+ 2d2:	64 df       	rcall	.-312    	; 0x19c <MPORT_enuSetPortConfigration>
+};
+
+/* Initialization Function */
+void HSEVENSEG_vInit(void) {
+	for (u8 display = 0; display < HSEVENSEG_MAX_DISPLAYS; display++) {
+		for (u8 segment = 0; segment < 7; segment++) {
+ 2d4:	cf 5f       	subi	r28, 0xFF	; 255
+ 2d6:	01 c0       	rjmp	.+2      	; 0x2da <HSEVENSEG_vInit+0x36>
+ 2d8:	c0 e0       	ldi	r28, 0x00	; 0
+ 2da:	c7 30       	cpi	r28, 0x07	; 7
+ 2dc:	38 f3       	brcs	.-50     	; 0x2ac <HSEVENSEG_vInit+0x8>
+	#endif
+};
+
+/* Initialization Function */
+void HSEVENSEG_vInit(void) {
+	for (u8 display = 0; display < HSEVENSEG_MAX_DISPLAYS; display++) {
+ 2de:	df 5f       	subi	r29, 0xFF	; 255
+ 2e0:	d4 30       	cpi	r29, 0x04	; 4
+ 2e2:	d0 f3       	brcs	.-12     	; 0x2d8 <HSEVENSEG_vInit+0x34>
+		for (u8 segment = 0; segment < 7; segment++) {
+			MPORT_enuSetPortConfigration(SevenSegPins[display][segment] , PIN_OUTPUT);
+		}
+	}
+}
+ 2e4:	df 91       	pop	r29
+ 2e6:	cf 91       	pop	r28
+ 2e8:	08 95       	ret
+
+000002ea <HSEVENSEG_vSetValue>:
+
+/* Set Value on a Single Seven-Segment Display */
+void HSEVENSEG_vSetValue(u8 Copy_enuSevenSegNum, u8 Copy_u8Value) {
+ 2ea:	1f 93       	push	r17
+ 2ec:	cf 93       	push	r28
+ 2ee:	df 93       	push	r29
+	if (Copy_enuSevenSegNum >= HSEVENSEG_MAX_DISPLAYS || Copy_u8Value > 9) {
+ 2f0:	84 30       	cpi	r24, 0x04	; 4
+ 2f2:	58 f5       	brcc	.+86     	; 0x34a <HSEVENSEG_vSetValue+0x60>
+ 2f4:	6a 30       	cpi	r22, 0x0A	; 10
+ 2f6:	48 f5       	brcc	.+82     	; 0x34a <HSEVENSEG_vSetValue+0x60>
+ 2f8:	d8 2f       	mov	r29, r24
+		return; // Invalid input
+	}
+
+	u8 encodedValue = SevenSegDigitEncoding[Copy_u8Value];
+ 2fa:	e6 2f       	mov	r30, r22
+ 2fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2fe:	e0 50       	subi	r30, 0x00	; 0
+ 300:	ff 4f       	sbci	r31, 0xFF	; 255
+ 302:	10 81       	ld	r17, Z
+
+	for (u8 segment = 0; segment < 7; segment++) {
+ 304:	c0 e0       	ldi	r28, 0x00	; 0
+ 306:	1f c0       	rjmp	.+62     	; 0x346 <HSEVENSEG_vSetValue+0x5c>
+		u8 pinState = (encodedValue >> segment) & 0x01;
+ 308:	41 2f       	mov	r20, r17
+ 30a:	50 e0       	ldi	r21, 0x00	; 0
+ 30c:	0c 2e       	mov	r0, r28
+ 30e:	02 c0       	rjmp	.+4      	; 0x314 <HSEVENSEG_vSetValue+0x2a>
+ 310:	55 95       	asr	r21
+ 312:	47 95       	ror	r20
+ 314:	0a 94       	dec	r0
+ 316:	e2 f7       	brpl	.-8      	; 0x310 <HSEVENSEG_vSetValue+0x26>
+ 318:	41 70       	andi	r20, 0x01	; 1
+		MDIO_enuSetPinValue((SevenSegPins[Copy_enuSevenSegNum][segment] >> 4)&0x0F, SevenSegPins[Copy_enuSevenSegNum][segment] & 0x0F, pinState);
+ 31a:	8d 2f       	mov	r24, r29
+ 31c:	90 e0       	ldi	r25, 0x00	; 0
+ 31e:	fc 01       	movw	r30, r24
+ 320:	ee 0f       	add	r30, r30
+ 322:	ff 1f       	adc	r31, r31
+ 324:	ee 0f       	add	r30, r30
+ 326:	ff 1f       	adc	r31, r31
+ 328:	ee 0f       	add	r30, r30
+ 32a:	ff 1f       	adc	r31, r31
+ 32c:	e8 1b       	sub	r30, r24
+ 32e:	f9 0b       	sbc	r31, r25
+ 330:	e6 5f       	subi	r30, 0xF6	; 246
+ 332:	fe 4f       	sbci	r31, 0xFE	; 254
+ 334:	ec 0f       	add	r30, r28
+ 336:	f1 1d       	adc	r31, r1
+ 338:	80 81       	ld	r24, Z
+ 33a:	68 2f       	mov	r22, r24
+ 33c:	6f 70       	andi	r22, 0x0F	; 15
+ 33e:	82 95       	swap	r24
+ 340:	8f 70       	andi	r24, 0x0F	; 15
+ 342:	ba de       	rcall	.-652    	; 0xb8 <MDIO_enuSetPinValue>
+		return; // Invalid input
+	}
+
+	u8 encodedValue = SevenSegDigitEncoding[Copy_u8Value];
+
+	for (u8 segment = 0; segment < 7; segment++) {
+ 344:	cf 5f       	subi	r28, 0xFF	; 255
+ 346:	c7 30       	cpi	r28, 0x07	; 7
+ 348:	f8 f2       	brcs	.-66     	; 0x308 <HSEVENSEG_vSetValue+0x1e>
+		u8 pinState = (encodedValue >> segment) & 0x01;
+		MDIO_enuSetPinValue((SevenSegPins[Copy_enuSevenSegNum][segment] >> 4)&0x0F, SevenSegPins[Copy_enuSevenSegNum][segment] & 0x0F, pinState);
+	}
+}
+ 34a:	df 91       	pop	r29
+ 34c:	cf 91       	pop	r28
+ 34e:	1f 91       	pop	r17
+ 350:	08 95       	ret
+
+00000352 <HSEVENSEG_enuSetMultiDigitValue>:
+
+/* Display Multi-Digit Value Across Multiple Seven-Segment Displays */
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value) {
+ 352:	0f 93       	push	r16
+ 354:	1f 93       	push	r17
+ 356:	cf 93       	push	r28
+ 358:	df 93       	push	r29
+ 35a:	ac 01       	movw	r20, r24
+    u16 reversedValue = 0;
+    u8 digitCount = 0;
+ 35c:	10 e0       	ldi	r17, 0x00	; 0
+	}
+}
+
+/* Display Multi-Digit Value Across Multiple Seven-Segment Displays */
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value) {
+    u16 reversedValue = 0;
+ 35e:	c0 e0       	ldi	r28, 0x00	; 0
+ 360:	d0 e0       	ldi	r29, 0x00	; 0
+    u8 digitCount = 0;
+
+    // Reverse the digits of Copy_u16Value
+    while (Copy_u16Value > 0) {
+ 362:	31 c0       	rjmp	.+98     	; 0x3c6 <HSEVENSEG_enuSetMultiDigitValue+0x74>
+        reversedValue = (reversedValue * 10) + (Copy_u16Value % 10);
+ 364:	9e 01       	movw	r18, r28
+ 366:	22 0f       	add	r18, r18
+ 368:	33 1f       	adc	r19, r19
+ 36a:	ce 01       	movw	r24, r28
+ 36c:	88 0f       	add	r24, r24
+ 36e:	99 1f       	adc	r25, r25
+ 370:	88 0f       	add	r24, r24
+ 372:	99 1f       	adc	r25, r25
+ 374:	88 0f       	add	r24, r24
+ 376:	99 1f       	adc	r25, r25
+ 378:	e9 01       	movw	r28, r18
+ 37a:	c8 0f       	add	r28, r24
+ 37c:	d9 1f       	adc	r29, r25
+ 37e:	9a 01       	movw	r18, r20
+ 380:	ad ec       	ldi	r26, 0xCD	; 205
+ 382:	bc ec       	ldi	r27, 0xCC	; 204
+ 384:	59 d0       	rcall	.+178    	; 0x438 <__umulhisi3>
+ 386:	96 95       	lsr	r25
+ 388:	87 95       	ror	r24
+ 38a:	96 95       	lsr	r25
+ 38c:	87 95       	ror	r24
+ 38e:	96 95       	lsr	r25
+ 390:	87 95       	ror	r24
+ 392:	9c 01       	movw	r18, r24
+ 394:	22 0f       	add	r18, r18
+ 396:	33 1f       	adc	r19, r19
+ 398:	88 0f       	add	r24, r24
+ 39a:	99 1f       	adc	r25, r25
+ 39c:	88 0f       	add	r24, r24
+ 39e:	99 1f       	adc	r25, r25
+ 3a0:	88 0f       	add	r24, r24
+ 3a2:	99 1f       	adc	r25, r25
+ 3a4:	82 0f       	add	r24, r18
+ 3a6:	93 1f       	adc	r25, r19
+ 3a8:	9a 01       	movw	r18, r20
+ 3aa:	28 1b       	sub	r18, r24
+ 3ac:	39 0b       	sbc	r19, r25
+ 3ae:	c2 0f       	add	r28, r18
+ 3b0:	d3 1f       	adc	r29, r19
+        Copy_u16Value /= 10;
+ 3b2:	9a 01       	movw	r18, r20
+ 3b4:	41 d0       	rcall	.+130    	; 0x438 <__umulhisi3>
+ 3b6:	ac 01       	movw	r20, r24
+ 3b8:	56 95       	lsr	r21
+ 3ba:	47 95       	ror	r20
+ 3bc:	56 95       	lsr	r21
+ 3be:	47 95       	ror	r20
+ 3c0:	56 95       	lsr	r21
+ 3c2:	47 95       	ror	r20
+        digitCount++;
+ 3c4:	1f 5f       	subi	r17, 0xFF	; 255
+HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value) {
+    u16 reversedValue = 0;
+    u8 digitCount = 0;
+
+    // Reverse the digits of Copy_u16Value
+    while (Copy_u16Value > 0) {
+ 3c6:	41 15       	cp	r20, r1
+ 3c8:	51 05       	cpc	r21, r1
+ 3ca:	61 f6       	brne	.-104    	; 0x364 <HSEVENSEG_enuSetMultiDigitValue+0x12>
+ 3cc:	00 e0       	ldi	r16, 0x00	; 0
+ 3ce:	2c c0       	rjmp	.+88     	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+        digitCount++;
+    }
+
+    // Pad the remaining digits with 0 if necessary
+    for (u8 display = 0; display < HSEVENSEG_MAX_DISPLAYS; display++) {
+        if (display < digitCount) {
+ 3d0:	01 17       	cp	r16, r17
+ 3d2:	30 f5       	brcc	.+76     	; 0x420 <__LOCK_REGION_LENGTH__+0x20>
+            u8 digit = reversedValue % 10;
+ 3d4:	9e 01       	movw	r18, r28
+ 3d6:	ad ec       	ldi	r26, 0xCD	; 205
+ 3d8:	bc ec       	ldi	r27, 0xCC	; 204
+ 3da:	2e d0       	rcall	.+92     	; 0x438 <__umulhisi3>
+ 3dc:	ac 01       	movw	r20, r24
+ 3de:	56 95       	lsr	r21
+ 3e0:	47 95       	ror	r20
+ 3e2:	56 95       	lsr	r21
+ 3e4:	47 95       	ror	r20
+ 3e6:	56 95       	lsr	r21
+ 3e8:	47 95       	ror	r20
+ 3ea:	ca 01       	movw	r24, r20
+ 3ec:	88 0f       	add	r24, r24
+ 3ee:	99 1f       	adc	r25, r25
+ 3f0:	44 0f       	add	r20, r20
+ 3f2:	55 1f       	adc	r21, r21
+ 3f4:	44 0f       	add	r20, r20
+ 3f6:	55 1f       	adc	r21, r21
+ 3f8:	44 0f       	add	r20, r20
+ 3fa:	55 1f       	adc	r21, r21
+ 3fc:	48 0f       	add	r20, r24
+ 3fe:	59 1f       	adc	r21, r25
+ 400:	ce 01       	movw	r24, r28
+ 402:	84 1b       	sub	r24, r20
+ 404:	95 0b       	sbc	r25, r21
+            reversedValue /= 10;
+ 406:	ac 01       	movw	r20, r24
+ 408:	17 d0       	rcall	.+46     	; 0x438 <__umulhisi3>
+ 40a:	ec 01       	movw	r28, r24
+ 40c:	d6 95       	lsr	r29
+ 40e:	c7 95       	ror	r28
+ 410:	d6 95       	lsr	r29
+ 412:	c7 95       	ror	r28
+ 414:	d6 95       	lsr	r29
+            HSEVENSEG_vSetValue(display, digit);
+ 416:	c7 95       	ror	r28
+ 418:	64 2f       	mov	r22, r20
+ 41a:	80 2f       	mov	r24, r16
+ 41c:	66 df       	rcall	.-308    	; 0x2ea <HSEVENSEG_vSetValue>
+        } else {
+            HSEVENSEG_vSetValue(display, 0); // Fill remaining displays with 0
+ 41e:	03 c0       	rjmp	.+6      	; 0x426 <__LOCK_REGION_LENGTH__+0x26>
+ 420:	60 e0       	ldi	r22, 0x00	; 0
+ 422:	80 2f       	mov	r24, r16
+ 424:	62 df       	rcall	.-316    	; 0x2ea <HSEVENSEG_vSetValue>
+        Copy_u16Value /= 10;
+        digitCount++;
+    }
+
+    // Pad the remaining digits with 0 if necessary
+    for (u8 display = 0; display < HSEVENSEG_MAX_DISPLAYS; display++) {
+ 426:	0f 5f       	subi	r16, 0xFF	; 255
+ 428:	04 30       	cpi	r16, 0x04	; 4
+ 42a:	90 f2       	brcs	.-92     	; 0x3d0 <HSEVENSEG_enuSetMultiDigitValue+0x7e>
+            HSEVENSEG_vSetValue(display, 0); // Fill remaining displays with 0
+        }
+    }
+
+    return HSEVENSEG_enuOK;
+}
+ 42c:	80 e0       	ldi	r24, 0x00	; 0
+ 42e:	df 91       	pop	r29
+ 430:	cf 91       	pop	r28
+ 432:	1f 91       	pop	r17
+ 434:	0f 91       	pop	r16
+ 436:	08 95       	ret
+
+00000438 <__umulhisi3>:
+ 438:	a2 9f       	mul	r26, r18
+ 43a:	b0 01       	movw	r22, r0
+ 43c:	b3 9f       	mul	r27, r19
+ 43e:	c0 01       	movw	r24, r0
+ 440:	a3 9f       	mul	r26, r19
+ 442:	70 0d       	add	r23, r0
+ 444:	81 1d       	adc	r24, r1
+ 446:	11 24       	eor	r1, r1
+ 448:	91 1d       	adc	r25, r1
+ 44a:	b2 9f       	mul	r27, r18
+ 44c:	70 0d       	add	r23, r0
+ 44e:	81 1d       	adc	r24, r1
+ 450:	11 24       	eor	r1, r1
+ 452:	91 1d       	adc	r25, r1
+ 454:	08 95       	ret
+
+00000456 <_exit>:
+ 456:	f8 94       	cli
+
+00000458 <__stop_program>:
+ 458:	ff cf       	rjmp	.-2      	; 0x458 <__stop_program>
