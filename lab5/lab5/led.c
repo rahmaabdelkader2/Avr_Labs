@@ -5,10 +5,17 @@
 extern  LedCfg_t ledCfg[];  // Declare the external LED configuration array
 
 void LED_init(void) {
-	u8 currPinPort = 0;
+	u8 currPin=0;
+	u8 currPort=0;
+
+
 	for (u8 iter = 0; iter < NUM_OF_LEDS; iter++) {
-		currPinPort = (ledCfg[iter].port << 4) + ledCfg[iter].pin;
-		MPORT_enuSetPinDirection(currPinPort, PIN_OUTPUT);
+		// check the next line to extract pin and port into two different u8 variables
+		currPin = (ledCfg[iter].port & 0x0F);
+		currPort = (ledCfg[iter].port >> 4);
+
+		//currPinPort = (ledCfg[iter].port << 4) + ledCfg[iter].pin;
+		MPORT_enuSetPinDirection(currPin, PIN_OUTPUT);
 	}
 }
 
