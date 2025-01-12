@@ -9,8 +9,7 @@ typedef enum
 
 typedef struct
 {
-	u8 port;
-	u8 pin;
+	u8 portpin;
 	LED_Connection_t connection;
 } LedCfg_t;
 

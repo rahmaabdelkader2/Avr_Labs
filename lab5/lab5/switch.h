@@ -1,6 +1,7 @@
 #include "stdtypes.h"
 typedef enum {
 	SWITCH_OK,
+	SWITCH_NOK,
 	SWITCH_ERROR_INVALID,
 	SWITCH_ERROR_INVALID_STATE
 } SWITCH_enuErrorStatus_t;
