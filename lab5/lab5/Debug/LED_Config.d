@@ -1,13 +1,9 @@
-LED.d LED.o: .././LED.c .././LED.h .././stdtypes.h .././DIO.h .././PORT.h \
+LED_Config.d LED_Config.o: .././LED_Config.c .././PORT.h .././stdtypes.h \
  .././bit_math.h .././DIO_Private.h .././LED_Config.h
 
-.././LED.h:
+.././PORT.h:
 
 .././stdtypes.h:
-
-.././DIO.h:
-
-.././PORT.h:
 
 .././bit_math.h:
 

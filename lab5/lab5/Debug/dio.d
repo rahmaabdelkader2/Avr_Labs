@@ -1,7 +1,10 @@
-dio.d dio.o: .././dio.c .././dio.h .././stdtypes.h .././private.h
+DIO.d DIO.o: .././DIO.c .././bit_math.h .././DIO.h .././stdtypes.h \
+ .././DIO_Private.h
 
-.././dio.h:
+.././bit_math.h:
+
+.././DIO.h:
 
 .././stdtypes.h:
 
-.././private.h:
+.././DIO_Private.h:

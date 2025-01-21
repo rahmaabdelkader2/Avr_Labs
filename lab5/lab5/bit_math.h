@@ -1,11 +1,17 @@
+#ifndef BIT_MATH_H
+#define BIT_MATH_H
+
 /* Set a certain bit in any register */
 #define SET_BIT(REG,BIT) (REG|=(1<<BIT))
 
 /* Clear a certain bit in any register */
-#define CLEAR_BIT(REG,BIT) (REG&=(~(1<<BIT)))
+#define CLR_BIT(REG,BIT) (REG&=(~(1<<BIT)))
 
 /* Toggle a certain bit in any register */
 #define TOGGLE_BIT(REG,BIT) (REG^=(1<<BIT))
+
+/* Get bit BIT in REG*/
+#define GET_BIT(REG, BIT)      (((REG) >> (BIT)) & 1)
 
 /* Shift left a certain bit in any register */
 #define SHIFT_LEFT(REG,BIT) (REG=(REG << BIT))
@@ -27,3 +33,5 @@
 
 /* Rotate right a certain number of times */
 #define ROTATE_RIGHT(REG,BIT) (REG=(REG >> BIT) | (REG << (sizeof(REG) * 8 - BIT)))
+
+#endif /* BIT_MATH_H */

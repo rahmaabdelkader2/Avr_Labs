@@ -1,39 +1,32 @@
-#define F_CPU 10000000UL
+#include "stdtypes.h"
+#include "DIO.h"
+#include "PORT.h"
+#include "SWITCH.h"
+#include "SWITCH_Config.h"
 #include "led.h"
-#include "switch.h"
-#include "Switch_cfg.h"
-#include <util/delay.h> // For delay
+#include "LED_Config.h"
+#include "PORT_Config.h"
+#include "bit_math.h"
 
-int main(void) {
-	// Initialize LED and Switch
-	LED_init();
-	SWITCH_init();
 
-	u8 switchState = 0; // To store the state of the switch
-	u8 ledState = LED_OFF; // To toggle LED state
+int main()
+{
+    HLID_vidINIT();
+    SWITCH_init();
+    u8 Local_u8SwitchState;
+    LED_setValue(LED_START, 0);
+    LED_setValue(LED_STOP, 0);
+    LED_setValue(LED_ALERT, 0);
 
-	while (1){
-	//if (SWITCH_enuGetSwitchState(0, &switchState) == SWITCH_OK) {
-		//_delay_ms(50); // Debounce delay
-		//if (SWITCH_enuGetSwitchState(0, &switchState) == SWITCH_OK && switchState == SWITCH_PRESSED) {
-			// Toggle LED
-			//ledState = (ledState == LED_OFF) ? LED_ON : LED_OFF;
-			//LED_setValue(1, LED_ON);
-			//_delay_ms(500); // Prevent rapid toggling
-		//}
-	//}
-	
-	if (SWITCH_enuGetSwitchState(0, &switchState) == SWITCH_OK) {
-	//	_delay_ms(50); // Debounce delay
-		if (SWITCH_enuGetSwitchState(0, &switchState) == SWITCH_OK && switchState == SWITCH_PRESSED) {
-			// Toggle LED
-			LED_setValue(1, LED_ON);
-			if (SWITCH_enuGetSwitchState(0, &switchState) == SWITCH_NOK && switchState == SWITCH_NOT_PRESSED)
-			LED_setValue(1, LED_OFF);
-			_delay_ms(500); // Prevent rapid toggling
-		}
-	}
-	}
+    while(1)
+    {
+        SWITCH_enuGetSwitchState(HSWITCH_1, &Local_u8SwitchState);
+        Local_u8SwitchState ==1 ? LED_setValue(LED_START, 1) : LED_setValue(LED_START, 0);
+        SWITCH_enuGetSwitchState(HSWITCH_2, &Local_u8SwitchState);
+        Local_u8SwitchState ==1 ? LED_setValue(LED_STOP, 1) : LED_setValue(LED_STOP, 0);
+        SWITCH_enuGetSwitchState(HSWITCH_3, &Local_u8SwitchState);
+        Local_u8SwitchState ==1 ? LED_setValue(LED_ALERT, 1) : LED_setValue(LED_ALERT, 0);
+    }
 
-	return 0;
 }
+
