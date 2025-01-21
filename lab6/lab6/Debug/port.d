@@ -1,12 +1,14 @@
-port.d port.o: .././port.c .././stdtypes.h .././private.h .././bit_math.h \
- .././config.h .././port.h
-
-.././stdtypes.h:
-
-.././private.h:
+PORT.d PORT.o: .././PORT.c .././bit_math.h .././PORT.h .././stdtypes.h \
+ .././DIO_Private.h .././port_config.h .././DIO.h
 
 .././bit_math.h:
 
-.././config.h:
+.././PORT.h:
 
-.././port.h:
+.././stdtypes.h:
+
+.././DIO_Private.h:
+
+.././port_config.h:
+
+.././DIO.h:

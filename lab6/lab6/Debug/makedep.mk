@@ -2,15 +2,23 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-conifg.c
+DIO.c
 
-dio.c
+LED.c
+
+LED_Config.c
 
 main.c
 
-port.c
+PORT.c
 
-seven_seg.c
+PORT_Config.c
 
-seven_seg_config.c
+SEVEN_SEG.c
+
+SEVEN_SEG_Config.c
+
+SWICTH.c
+
+SWITCH_Config.c
 

@@ -5,7 +5,7 @@
     <ProjectVersion>7.0</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
     <ProjectGuid>dce6c7e3-ee26-4d79-826b-08594b9ad897</ProjectGuid>
-    <avrdevice>ATmega128</avrdevice>
+    <avrdevice>ATmega32</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>C</Language>
@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <RamSnippetAddress />
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue />
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -40,25 +40,11 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
-    <avrtoolserialnumber />
-    <avrdeviceexpectedsignature>0x1E9702</avrdeviceexpectedsignature>
-    <com_atmel_avrdbg_tool_simulator>
-      <ToolOptions xmlns="">
-        <InterfaceProperties>
-        </InterfaceProperties>
-      </ToolOptions>
-      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
-      <ToolNumber xmlns="">
-      </ToolNumber>
-      <ToolName xmlns="">Simulator</ToolName>
-    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGcc>
-        <avrgcc.common.Device>-mmcu=atmega128 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128"</avrgcc.common.Device>
-        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+        <avrgcc.common.Device>-mmcu=atmega32 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32"</avrgcc.common.Device>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -96,8 +82,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGcc>
-        <avrgcc.common.Device>-mmcu=atmega128 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega128"</avrgcc.common.Device>
-        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+        <avrgcc.common.Device>-mmcu=atmega32 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32"</avrgcc.common.Device>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -138,43 +123,67 @@
     <Compile Include="bit_math.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="config.h">
+    <Compile Include="DIO.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="conifg.c">
+    <Compile Include="DIO.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="dio.c">
+    <Compile Include="DIO_Private.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="dio.h">
+    <Compile Include="LED.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LED.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LED_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LED_Config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="port.c">
+    <Compile Include="PORT.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="port.h">
+    <Compile Include="PORT.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="private.h">
+    <Compile Include="PORT_Config.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="seven_seg.c">
+    <Compile Include="PORT_Config.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="seven_seg.h">
+    <Compile Include="SEVEN_SEG.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="seven_seg_config.c">
+    <Compile Include="SEVEN_SEG.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="seven_seg_config.h">
+    <Compile Include="SEVEN_SEG_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SEVEN_SEG_Config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="stdtypes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SWICTH.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SWITCH.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SWITCH_Config.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SWITCH_Config.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

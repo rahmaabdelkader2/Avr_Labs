@@ -1,6 +1,6 @@
 #include "stdtypes.h"
-#include "private.h"
-#include "seven_seg_config.h"
+#include "DIO_Private.h"
+#include "SEVEN_SEG_Config.h"
 
 
 u8 SevenSegPins[HSEVENSEG_MAX_DISPLAYS][7] = {

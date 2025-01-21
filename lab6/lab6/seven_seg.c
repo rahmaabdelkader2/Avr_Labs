@@ -1,8 +1,8 @@
 #include "stdtypes.h"
-#include "dio.h"
-#include "port.h"
-#include "seven_seg.h"
-#include "seven_seg_config.h"
+#include "DIO.h"
+#include "PORT.h"
+#include "SEVEN_SEG.h"
+#include "SEVEN_SEG_Config.h"
 
 extern u8 SevenSegPins[HSEVENSEG_MAX_DISPLAYS][7];
 
@@ -81,4 +81,3 @@ HSEVENSEG_enuErrorStatus_t HSEVENSEG_enuSetMultiDigitValue(u16 Copy_u16Value) {
 
     return HSEVENSEG_enuOK;
 }
-

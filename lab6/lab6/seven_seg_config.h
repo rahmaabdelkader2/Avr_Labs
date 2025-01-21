@@ -1,3 +1,5 @@
+#ifndef SEVEN_SEG_CONFIG_H_
+#define SEVEN_SEG_CONFIG_H_
 
 #include "stdtypes.h"
 
@@ -12,3 +14,4 @@ typedef enum {
 	COMMON_ANODE
 } SevenSegType_t;
 
+#endif /* SEVEN_SEG_CONFIG_H_ */

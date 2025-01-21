@@ -1,8 +1,8 @@
-seven_seg_config.d seven_seg_config.o: .././seven_seg_config.c \
- .././stdtypes.h .././private.h .././seven_seg_config.h
+SEVEN_SEG_Config.d SEVEN_SEG_Config.o: .././SEVEN_SEG_Config.c \
+ .././stdtypes.h .././DIO_Private.h .././SEVEN_SEG_Config.h
 
 .././stdtypes.h:
 
-.././private.h:
+.././DIO_Private.h:
 
-.././seven_seg_config.h:
+.././SEVEN_SEG_Config.h:

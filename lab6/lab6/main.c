@@ -1,6 +1,6 @@
 #define F_CPU 100000000
 
-#include "seven_seg.h"
+#include "SEVEN_SEG.h"
 #include <util/delay.h>
 
 int main(void) {
