@@ -1,0 +1,1613 @@
+
+lcd_driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000632  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000e  00800060  00000632  000006a6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000006b4  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006e4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000100  00000000  00000000  00000720  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001431  00000000  00000000  00000820  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000094c  00000000  00000000  00001c51  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000d3d  00000000  00000000  0000259d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001dc  00000000  00000000  000032dc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000008c8  00000000  00000000  000034b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000013ff  00000000  00000000  00003d80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c0  00000000  00000000  0000517f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e3       	ldi	r30, 0x32	; 50
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ae 36       	cpi	r26, 0x6E	; 110
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 86 02 	call	0x50c	; 0x50c <main>
+  7a:	0c 94 17 03 	jmp	0x62e	; 0x62e <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <MDIO_enuSetPinValue>:
+#include "DIO_Private.h"
+
+MDIO_enuErrorStatus_t MDIO_enuSetPinValue(MDIO_enuPortNum_t Copy_enuPortNum, MDIO_enuPinNum_t Copy_enuPinNum, MDIO_enuPinConfiguration_t Copy_enuPinConfiguration)
+{
+    // Validate pin number
+    if (Copy_enuPinNum > MDIO_PIN7)
+  82:	68 30       	cpi	r22, 0x08	; 8
+  84:	08 f0       	brcs	.+2      	; 0x88 <MDIO_enuSetPinValue+0x6>
+  86:	7c c0       	rjmp	.+248    	; 0x180 <MDIO_enuSetPinValue+0xfe>
+    {
+        return MDIO_INVALID_PIN; // Return error if pin number is invalid
+    }
+
+    // Validate port number
+    if (Copy_enuPortNum > MDIO_PORTD)
+  88:	84 30       	cpi	r24, 0x04	; 4
+  8a:	08 f0       	brcs	.+2      	; 0x8e <MDIO_enuSetPinValue+0xc>
+  8c:	7b c0       	rjmp	.+246    	; 0x184 <MDIO_enuSetPinValue+0x102>
+    {
+        return MDIO_INVALID_PORT; // Return error if port number is invalid
+    }
+
+    // Set or clear the pin based on the configuration
+    switch (Copy_enuPinConfiguration)
+  8e:	44 23       	and	r20, r20
+  90:	d9 f1       	breq	.+118    	; 0x108 <MDIO_enuSetPinValue+0x86>
+  92:	41 30       	cpi	r20, 0x01	; 1
+  94:	09 f0       	breq	.+2      	; 0x98 <MDIO_enuSetPinValue+0x16>
+  96:	78 c0       	rjmp	.+240    	; 0x188 <MDIO_enuSetPinValue+0x106>
+    {
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+  98:	81 30       	cpi	r24, 0x01	; 1
+  9a:	91 f0       	breq	.+36     	; 0xc0 <MDIO_enuSetPinValue+0x3e>
+  9c:	28 f0       	brcs	.+10     	; 0xa8 <MDIO_enuSetPinValue+0x26>
+  9e:	82 30       	cpi	r24, 0x02	; 2
+  a0:	d9 f0       	breq	.+54     	; 0xd8 <MDIO_enuSetPinValue+0x56>
+  a2:	83 30       	cpi	r24, 0x03	; 3
+  a4:	29 f1       	breq	.+74     	; 0xf0 <MDIO_enuSetPinValue+0x6e>
+  a6:	72 c0       	rjmp	.+228    	; 0x18c <MDIO_enuSetPinValue+0x10a>
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+  a8:	2b b3       	in	r18, 0x1b	; 27
+  aa:	81 e0       	ldi	r24, 0x01	; 1
+  ac:	90 e0       	ldi	r25, 0x00	; 0
+  ae:	02 c0       	rjmp	.+4      	; 0xb4 <MDIO_enuSetPinValue+0x32>
+  b0:	88 0f       	add	r24, r24
+  b2:	99 1f       	adc	r25, r25
+  b4:	6a 95       	dec	r22
+  b6:	e2 f7       	brpl	.-8      	; 0xb0 <MDIO_enuSetPinValue+0x2e>
+  b8:	82 2b       	or	r24, r18
+  ba:	8b bb       	out	0x1b, r24	; 27
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+  bc:	80 e0       	ldi	r24, 0x00	; 0
+    switch (Copy_enuPinConfiguration)
+    {
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+  be:	08 95       	ret
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+  c0:	28 b3       	in	r18, 0x18	; 24
+  c2:	81 e0       	ldi	r24, 0x01	; 1
+  c4:	90 e0       	ldi	r25, 0x00	; 0
+  c6:	02 c0       	rjmp	.+4      	; 0xcc <MDIO_enuSetPinValue+0x4a>
+  c8:	88 0f       	add	r24, r24
+  ca:	99 1f       	adc	r25, r25
+  cc:	6a 95       	dec	r22
+  ce:	e2 f7       	brpl	.-8      	; 0xc8 <MDIO_enuSetPinValue+0x46>
+  d0:	82 2b       	or	r24, r18
+  d2:	88 bb       	out	0x18, r24	; 24
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+  d4:	80 e0       	ldi	r24, 0x00	; 0
+    {
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+  d6:	08 95       	ret
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+  d8:	25 b3       	in	r18, 0x15	; 21
+  da:	81 e0       	ldi	r24, 0x01	; 1
+  dc:	90 e0       	ldi	r25, 0x00	; 0
+  de:	02 c0       	rjmp	.+4      	; 0xe4 <MDIO_enuSetPinValue+0x62>
+  e0:	88 0f       	add	r24, r24
+  e2:	99 1f       	adc	r25, r25
+  e4:	6a 95       	dec	r22
+  e6:	e2 f7       	brpl	.-8      	; 0xe0 <MDIO_enuSetPinValue+0x5e>
+  e8:	82 2b       	or	r24, r18
+  ea:	85 bb       	out	0x15, r24	; 21
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+  ec:	80 e0       	ldi	r24, 0x00	; 0
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+  ee:	08 95       	ret
+                case MDIO_PORTD: SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+  f0:	22 b3       	in	r18, 0x12	; 18
+  f2:	81 e0       	ldi	r24, 0x01	; 1
+  f4:	90 e0       	ldi	r25, 0x00	; 0
+  f6:	02 c0       	rjmp	.+4      	; 0xfc <MDIO_enuSetPinValue+0x7a>
+  f8:	88 0f       	add	r24, r24
+  fa:	99 1f       	adc	r25, r25
+  fc:	6a 95       	dec	r22
+  fe:	e2 f7       	brpl	.-8      	; 0xf8 <MDIO_enuSetPinValue+0x76>
+ 100:	82 2b       	or	r24, r18
+ 102:	82 bb       	out	0x12, r24	; 18
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 104:	80 e0       	ldi	r24, 0x00	; 0
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 106:	08 95       	ret
+                default: return MDIO_NOK; // This should never happen due to the validation above
+            }
+            break;
+
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+ 108:	81 30       	cpi	r24, 0x01	; 1
+ 10a:	99 f0       	breq	.+38     	; 0x132 <MDIO_enuSetPinValue+0xb0>
+ 10c:	28 f0       	brcs	.+10     	; 0x118 <MDIO_enuSetPinValue+0x96>
+ 10e:	82 30       	cpi	r24, 0x02	; 2
+ 110:	e9 f0       	breq	.+58     	; 0x14c <MDIO_enuSetPinValue+0xca>
+ 112:	83 30       	cpi	r24, 0x03	; 3
+ 114:	41 f1       	breq	.+80     	; 0x166 <MDIO_enuSetPinValue+0xe4>
+ 116:	3c c0       	rjmp	.+120    	; 0x190 <MDIO_enuSetPinValue+0x10e>
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 118:	2b b3       	in	r18, 0x1b	; 27
+ 11a:	81 e0       	ldi	r24, 0x01	; 1
+ 11c:	90 e0       	ldi	r25, 0x00	; 0
+ 11e:	02 c0       	rjmp	.+4      	; 0x124 <MDIO_enuSetPinValue+0xa2>
+ 120:	88 0f       	add	r24, r24
+ 122:	99 1f       	adc	r25, r25
+ 124:	6a 95       	dec	r22
+ 126:	e2 f7       	brpl	.-8      	; 0x120 <MDIO_enuSetPinValue+0x9e>
+ 128:	80 95       	com	r24
+ 12a:	82 23       	and	r24, r18
+ 12c:	8b bb       	out	0x1b, r24	; 27
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 12e:	80 e0       	ldi	r24, 0x00	; 0
+            break;
+
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 130:	08 95       	ret
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 132:	28 b3       	in	r18, 0x18	; 24
+ 134:	81 e0       	ldi	r24, 0x01	; 1
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+ 138:	02 c0       	rjmp	.+4      	; 0x13e <MDIO_enuSetPinValue+0xbc>
+ 13a:	88 0f       	add	r24, r24
+ 13c:	99 1f       	adc	r25, r25
+ 13e:	6a 95       	dec	r22
+ 140:	e2 f7       	brpl	.-8      	; 0x13a <MDIO_enuSetPinValue+0xb8>
+ 142:	80 95       	com	r24
+ 144:	82 23       	and	r24, r18
+ 146:	88 bb       	out	0x18, r24	; 24
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 148:	80 e0       	ldi	r24, 0x00	; 0
+
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 14a:	08 95       	ret
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 14c:	25 b3       	in	r18, 0x15	; 21
+ 14e:	81 e0       	ldi	r24, 0x01	; 1
+ 150:	90 e0       	ldi	r25, 0x00	; 0
+ 152:	02 c0       	rjmp	.+4      	; 0x158 <MDIO_enuSetPinValue+0xd6>
+ 154:	88 0f       	add	r24, r24
+ 156:	99 1f       	adc	r25, r25
+ 158:	6a 95       	dec	r22
+ 15a:	e2 f7       	brpl	.-8      	; 0x154 <MDIO_enuSetPinValue+0xd2>
+ 15c:	80 95       	com	r24
+ 15e:	82 23       	and	r24, r18
+ 160:	85 bb       	out	0x15, r24	; 21
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 162:	80 e0       	ldi	r24, 0x00	; 0
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 164:	08 95       	ret
+                case MDIO_PORTD: CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 166:	22 b3       	in	r18, 0x12	; 18
+ 168:	81 e0       	ldi	r24, 0x01	; 1
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	02 c0       	rjmp	.+4      	; 0x172 <MDIO_enuSetPinValue+0xf0>
+ 16e:	88 0f       	add	r24, r24
+ 170:	99 1f       	adc	r25, r25
+ 172:	6a 95       	dec	r22
+ 174:	e2 f7       	brpl	.-8      	; 0x16e <MDIO_enuSetPinValue+0xec>
+ 176:	80 95       	com	r24
+ 178:	82 23       	and	r24, r18
+ 17a:	82 bb       	out	0x12, r24	; 18
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 17c:	80 e0       	ldi	r24, 0x00	; 0
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 17e:	08 95       	ret
+MDIO_enuErrorStatus_t MDIO_enuSetPinValue(MDIO_enuPortNum_t Copy_enuPortNum, MDIO_enuPinNum_t Copy_enuPinNum, MDIO_enuPinConfiguration_t Copy_enuPinConfiguration)
+{
+    // Validate pin number
+    if (Copy_enuPinNum > MDIO_PIN7)
+    {
+        return MDIO_INVALID_PIN; // Return error if pin number is invalid
+ 180:	82 e0       	ldi	r24, 0x02	; 2
+ 182:	08 95       	ret
+    }
+
+    // Validate port number
+    if (Copy_enuPortNum > MDIO_PORTD)
+    {
+        return MDIO_INVALID_PORT; // Return error if port number is invalid
+ 184:	83 e0       	ldi	r24, 0x03	; 3
+ 186:	08 95       	ret
+                default: return MDIO_NOK; // This should never happen due to the validation above
+            }
+            break;
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+ 188:	81 e0       	ldi	r24, 0x01	; 1
+ 18a:	08 95       	ret
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+                default: return MDIO_NOK; // This should never happen due to the validation above
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	08 95       	ret
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+                default: return MDIO_NOK; // This should never happen due to the validation above
+ 190:	81 e0       	ldi	r24, 0x01	; 1
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+}
+ 192:	08 95       	ret
+
+00000194 <MDIO_enuSetPinConfigration>:
+
+// Function to configure a pin direction
+MDIO_enuErrorStatus_t MDIO_enuSetPinConfigration(MDIO_enuPortNum_t Copy_enuPortNum, MDIO_enuPinNum_t Copy_enuPinNum, u8 Copy_u8PinDir)
+{
+    
+        switch (Copy_u8PinDir)
+ 194:	41 30       	cpi	r20, 0x01	; 1
+ 196:	29 f0       	breq	.+10     	; 0x1a2 <MDIO_enuSetPinConfigration+0xe>
+ 198:	e0 f1       	brcs	.+120    	; 0x212 <MDIO_enuSetPinConfigration+0x7e>
+ 19a:	42 30       	cpi	r20, 0x02	; 2
+ 19c:	09 f4       	brne	.+2      	; 0x1a0 <MDIO_enuSetPinConfigration+0xc>
+ 19e:	85 c0       	rjmp	.+266    	; 0x2aa <MDIO_enuSetPinConfigration+0x116>
+ 1a0:	d0 c0       	rjmp	.+416    	; 0x342 <MDIO_enuSetPinConfigration+0x1ae>
+        {
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+ 1a2:	81 30       	cpi	r24, 0x01	; 1
+ 1a4:	91 f0       	breq	.+36     	; 0x1ca <MDIO_enuSetPinConfigration+0x36>
+ 1a6:	28 f0       	brcs	.+10     	; 0x1b2 <MDIO_enuSetPinConfigration+0x1e>
+ 1a8:	82 30       	cpi	r24, 0x02	; 2
+ 1aa:	d9 f0       	breq	.+54     	; 0x1e2 <MDIO_enuSetPinConfigration+0x4e>
+ 1ac:	83 30       	cpi	r24, 0x03	; 3
+ 1ae:	29 f1       	breq	.+74     	; 0x1fa <MDIO_enuSetPinConfigration+0x66>
+ 1b0:	ca c0       	rjmp	.+404    	; 0x346 <MDIO_enuSetPinConfigration+0x1b2>
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+ 1b2:	2a b3       	in	r18, 0x1a	; 26
+ 1b4:	81 e0       	ldi	r24, 0x01	; 1
+ 1b6:	90 e0       	ldi	r25, 0x00	; 0
+ 1b8:	02 c0       	rjmp	.+4      	; 0x1be <MDIO_enuSetPinConfigration+0x2a>
+ 1ba:	88 0f       	add	r24, r24
+ 1bc:	99 1f       	adc	r25, r25
+ 1be:	6a 95       	dec	r22
+ 1c0:	e2 f7       	brpl	.-8      	; 0x1ba <MDIO_enuSetPinConfigration+0x26>
+ 1c2:	82 2b       	or	r24, r18
+ 1c4:	8a bb       	out	0x1a, r24	; 26
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 1c6:	80 e0       	ldi	r24, 0x00	; 0
+        switch (Copy_u8PinDir)
+        {
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+ 1c8:	08 95       	ret
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+ 1ca:	27 b3       	in	r18, 0x17	; 23
+ 1cc:	81 e0       	ldi	r24, 0x01	; 1
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	02 c0       	rjmp	.+4      	; 0x1d6 <MDIO_enuSetPinConfigration+0x42>
+ 1d2:	88 0f       	add	r24, r24
+ 1d4:	99 1f       	adc	r25, r25
+ 1d6:	6a 95       	dec	r22
+ 1d8:	e2 f7       	brpl	.-8      	; 0x1d2 <MDIO_enuSetPinConfigration+0x3e>
+ 1da:	82 2b       	or	r24, r18
+ 1dc:	87 bb       	out	0x17, r24	; 23
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+        {
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+ 1e0:	08 95       	ret
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+ 1e2:	24 b3       	in	r18, 0x14	; 20
+ 1e4:	81 e0       	ldi	r24, 0x01	; 1
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+ 1e8:	02 c0       	rjmp	.+4      	; 0x1ee <MDIO_enuSetPinConfigration+0x5a>
+ 1ea:	88 0f       	add	r24, r24
+ 1ec:	99 1f       	adc	r25, r25
+ 1ee:	6a 95       	dec	r22
+ 1f0:	e2 f7       	brpl	.-8      	; 0x1ea <MDIO_enuSetPinConfigration+0x56>
+ 1f2:	82 2b       	or	r24, r18
+ 1f4:	84 bb       	out	0x14, r24	; 20
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 1f6:	80 e0       	ldi	r24, 0x00	; 0
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+ 1f8:	08 95       	ret
+                    case MDIO_PORTD: SET_BIT(DDRD_REG, Copy_enuPinNum); break;
+ 1fa:	21 b3       	in	r18, 0x11	; 17
+ 1fc:	81 e0       	ldi	r24, 0x01	; 1
+ 1fe:	90 e0       	ldi	r25, 0x00	; 0
+ 200:	02 c0       	rjmp	.+4      	; 0x206 <MDIO_enuSetPinConfigration+0x72>
+ 202:	88 0f       	add	r24, r24
+ 204:	99 1f       	adc	r25, r25
+ 206:	6a 95       	dec	r22
+ 208:	e2 f7       	brpl	.-8      	; 0x202 <MDIO_enuSetPinConfigration+0x6e>
+ 20a:	82 2b       	or	r24, r18
+ 20c:	81 bb       	out	0x11, r24	; 17
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 20e:	80 e0       	ldi	r24, 0x00	; 0
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: SET_BIT(DDRD_REG, Copy_enuPinNum); break;
+ 210:	08 95       	ret
+                    default: return MDIO_NOK;
+                }
+                break;
+
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+ 212:	81 30       	cpi	r24, 0x01	; 1
+ 214:	b9 f0       	breq	.+46     	; 0x244 <MDIO_enuSetPinConfigration+0xb0>
+ 216:	28 f0       	brcs	.+10     	; 0x222 <MDIO_enuSetPinConfigration+0x8e>
+ 218:	82 30       	cpi	r24, 0x02	; 2
+ 21a:	29 f1       	breq	.+74     	; 0x266 <MDIO_enuSetPinConfigration+0xd2>
+ 21c:	83 30       	cpi	r24, 0x03	; 3
+ 21e:	a1 f1       	breq	.+104    	; 0x288 <MDIO_enuSetPinConfigration+0xf4>
+ 220:	94 c0       	rjmp	.+296    	; 0x34a <MDIO_enuSetPinConfigration+0x1b6>
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 222:	2a b3       	in	r18, 0x1a	; 26
+ 224:	81 e0       	ldi	r24, 0x01	; 1
+ 226:	90 e0       	ldi	r25, 0x00	; 0
+ 228:	02 c0       	rjmp	.+4      	; 0x22e <MDIO_enuSetPinConfigration+0x9a>
+ 22a:	88 0f       	add	r24, r24
+ 22c:	99 1f       	adc	r25, r25
+ 22e:	6a 95       	dec	r22
+ 230:	e2 f7       	brpl	.-8      	; 0x22a <MDIO_enuSetPinConfigration+0x96>
+ 232:	80 95       	com	r24
+ 234:	92 2f       	mov	r25, r18
+ 236:	98 23       	and	r25, r24
+ 238:	9a bb       	out	0x1a, r25	; 26
+ 23a:	9b b3       	in	r25, 0x1b	; 27
+ 23c:	89 23       	and	r24, r25
+ 23e:	8b bb       	out	0x1b, r24	; 27
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 240:	80 e0       	ldi	r24, 0x00	; 0
+                break;
+
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 242:	08 95       	ret
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 244:	27 b3       	in	r18, 0x17	; 23
+ 246:	81 e0       	ldi	r24, 0x01	; 1
+ 248:	90 e0       	ldi	r25, 0x00	; 0
+ 24a:	02 c0       	rjmp	.+4      	; 0x250 <MDIO_enuSetPinConfigration+0xbc>
+ 24c:	88 0f       	add	r24, r24
+ 24e:	99 1f       	adc	r25, r25
+ 250:	6a 95       	dec	r22
+ 252:	e2 f7       	brpl	.-8      	; 0x24c <MDIO_enuSetPinConfigration+0xb8>
+ 254:	80 95       	com	r24
+ 256:	92 2f       	mov	r25, r18
+ 258:	98 23       	and	r25, r24
+ 25a:	97 bb       	out	0x17, r25	; 23
+ 25c:	98 b3       	in	r25, 0x18	; 24
+ 25e:	89 23       	and	r24, r25
+ 260:	88 bb       	out	0x18, r24	; 24
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 262:	80 e0       	ldi	r24, 0x00	; 0
+
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 264:	08 95       	ret
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 266:	24 b3       	in	r18, 0x14	; 20
+ 268:	81 e0       	ldi	r24, 0x01	; 1
+ 26a:	90 e0       	ldi	r25, 0x00	; 0
+ 26c:	02 c0       	rjmp	.+4      	; 0x272 <MDIO_enuSetPinConfigration+0xde>
+ 26e:	88 0f       	add	r24, r24
+ 270:	99 1f       	adc	r25, r25
+ 272:	6a 95       	dec	r22
+ 274:	e2 f7       	brpl	.-8      	; 0x26e <MDIO_enuSetPinConfigration+0xda>
+ 276:	80 95       	com	r24
+ 278:	92 2f       	mov	r25, r18
+ 27a:	98 23       	and	r25, r24
+ 27c:	94 bb       	out	0x14, r25	; 20
+ 27e:	95 b3       	in	r25, 0x15	; 21
+ 280:	89 23       	and	r24, r25
+ 282:	85 bb       	out	0x15, r24	; 21
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 284:	80 e0       	ldi	r24, 0x00	; 0
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 286:	08 95       	ret
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 288:	21 b3       	in	r18, 0x11	; 17
+ 28a:	81 e0       	ldi	r24, 0x01	; 1
+ 28c:	90 e0       	ldi	r25, 0x00	; 0
+ 28e:	02 c0       	rjmp	.+4      	; 0x294 <MDIO_enuSetPinConfigration+0x100>
+ 290:	88 0f       	add	r24, r24
+ 292:	99 1f       	adc	r25, r25
+ 294:	6a 95       	dec	r22
+ 296:	e2 f7       	brpl	.-8      	; 0x290 <MDIO_enuSetPinConfigration+0xfc>
+ 298:	80 95       	com	r24
+ 29a:	92 2f       	mov	r25, r18
+ 29c:	98 23       	and	r25, r24
+ 29e:	91 bb       	out	0x11, r25	; 17
+ 2a0:	92 b3       	in	r25, 0x12	; 18
+ 2a2:	89 23       	and	r24, r25
+ 2a4:	82 bb       	out	0x12, r24	; 18
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 2a6:	80 e0       	ldi	r24, 0x00	; 0
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 2a8:	08 95       	ret
+                    default: return MDIO_NOK;
+                }
+                break;
+
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+ 2aa:	81 30       	cpi	r24, 0x01	; 1
+ 2ac:	b9 f0       	breq	.+46     	; 0x2dc <MDIO_enuSetPinConfigration+0x148>
+ 2ae:	28 f0       	brcs	.+10     	; 0x2ba <MDIO_enuSetPinConfigration+0x126>
+ 2b0:	82 30       	cpi	r24, 0x02	; 2
+ 2b2:	29 f1       	breq	.+74     	; 0x2fe <MDIO_enuSetPinConfigration+0x16a>
+ 2b4:	83 30       	cpi	r24, 0x03	; 3
+ 2b6:	a1 f1       	breq	.+104    	; 0x320 <MDIO_enuSetPinConfigration+0x18c>
+ 2b8:	4a c0       	rjmp	.+148    	; 0x34e <MDIO_enuSetPinConfigration+0x1ba>
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 2ba:	2a b3       	in	r18, 0x1a	; 26
+ 2bc:	81 e0       	ldi	r24, 0x01	; 1
+ 2be:	90 e0       	ldi	r25, 0x00	; 0
+ 2c0:	02 c0       	rjmp	.+4      	; 0x2c6 <MDIO_enuSetPinConfigration+0x132>
+ 2c2:	88 0f       	add	r24, r24
+ 2c4:	99 1f       	adc	r25, r25
+ 2c6:	6a 95       	dec	r22
+ 2c8:	e2 f7       	brpl	.-8      	; 0x2c2 <MDIO_enuSetPinConfigration+0x12e>
+ 2ca:	98 2f       	mov	r25, r24
+ 2cc:	90 95       	com	r25
+ 2ce:	92 23       	and	r25, r18
+ 2d0:	9a bb       	out	0x1a, r25	; 26
+ 2d2:	9b b3       	in	r25, 0x1b	; 27
+ 2d4:	89 2b       	or	r24, r25
+ 2d6:	8b bb       	out	0x1b, r24	; 27
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 2d8:	80 e0       	ldi	r24, 0x00	; 0
+                break;
+
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 2da:	08 95       	ret
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 2dc:	27 b3       	in	r18, 0x17	; 23
+ 2de:	81 e0       	ldi	r24, 0x01	; 1
+ 2e0:	90 e0       	ldi	r25, 0x00	; 0
+ 2e2:	02 c0       	rjmp	.+4      	; 0x2e8 <MDIO_enuSetPinConfigration+0x154>
+ 2e4:	88 0f       	add	r24, r24
+ 2e6:	99 1f       	adc	r25, r25
+ 2e8:	6a 95       	dec	r22
+ 2ea:	e2 f7       	brpl	.-8      	; 0x2e4 <MDIO_enuSetPinConfigration+0x150>
+ 2ec:	98 2f       	mov	r25, r24
+ 2ee:	90 95       	com	r25
+ 2f0:	92 23       	and	r25, r18
+ 2f2:	97 bb       	out	0x17, r25	; 23
+ 2f4:	98 b3       	in	r25, 0x18	; 24
+ 2f6:	89 2b       	or	r24, r25
+ 2f8:	88 bb       	out	0x18, r24	; 24
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 2fa:	80 e0       	ldi	r24, 0x00	; 0
+
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 2fc:	08 95       	ret
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 2fe:	24 b3       	in	r18, 0x14	; 20
+ 300:	81 e0       	ldi	r24, 0x01	; 1
+ 302:	90 e0       	ldi	r25, 0x00	; 0
+ 304:	02 c0       	rjmp	.+4      	; 0x30a <MDIO_enuSetPinConfigration+0x176>
+ 306:	88 0f       	add	r24, r24
+ 308:	99 1f       	adc	r25, r25
+ 30a:	6a 95       	dec	r22
+ 30c:	e2 f7       	brpl	.-8      	; 0x306 <MDIO_enuSetPinConfigration+0x172>
+ 30e:	98 2f       	mov	r25, r24
+ 310:	90 95       	com	r25
+ 312:	92 23       	and	r25, r18
+ 314:	94 bb       	out	0x14, r25	; 20
+ 316:	95 b3       	in	r25, 0x15	; 21
+ 318:	89 2b       	or	r24, r25
+ 31a:	85 bb       	out	0x15, r24	; 21
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 31c:	80 e0       	ldi	r24, 0x00	; 0
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 31e:	08 95       	ret
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 320:	21 b3       	in	r18, 0x11	; 17
+ 322:	81 e0       	ldi	r24, 0x01	; 1
+ 324:	90 e0       	ldi	r25, 0x00	; 0
+ 326:	02 c0       	rjmp	.+4      	; 0x32c <MDIO_enuSetPinConfigration+0x198>
+ 328:	88 0f       	add	r24, r24
+ 32a:	99 1f       	adc	r25, r25
+ 32c:	6a 95       	dec	r22
+ 32e:	e2 f7       	brpl	.-8      	; 0x328 <MDIO_enuSetPinConfigration+0x194>
+ 330:	98 2f       	mov	r25, r24
+ 332:	90 95       	com	r25
+ 334:	92 23       	and	r25, r18
+ 336:	91 bb       	out	0x11, r25	; 17
+ 338:	92 b3       	in	r25, 0x12	; 18
+ 33a:	89 2b       	or	r24, r25
+ 33c:	82 bb       	out	0x12, r24	; 18
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 33e:	80 e0       	ldi	r24, 0x00	; 0
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 340:	08 95       	ret
+                    default: return MDIO_NOK;
+                }
+                break;
+
+            default:
+                return MDIO_NOK;
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+ 344:	08 95       	ret
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: SET_BIT(DDRD_REG, Copy_enuPinNum); break;
+                    default: return MDIO_NOK;
+ 346:	81 e0       	ldi	r24, 0x01	; 1
+ 348:	08 95       	ret
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+                    default: return MDIO_NOK;
+ 34a:	81 e0       	ldi	r24, 0x01	; 1
+ 34c:	08 95       	ret
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+                    default: return MDIO_NOK;
+ 34e:	81 e0       	ldi	r24, 0x01	; 1
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+    
+    return MDIO_NOK;
+}
+ 350:	08 95       	ret
+
+00000352 <MDIO_enuSetPortValue>:
+
+// Function to set the value of a whole port
+MDIO_enuErrorStatus_t MDIO_enuSetPortValue(MDIO_enuPortNum_t Copy_enuPortNum, u8 Copy_u8PortValue)
+{
+    if (Copy_enuPortNum <= MDIO_PORTD)
+ 352:	84 30       	cpi	r24, 0x04	; 4
+ 354:	a0 f4       	brcc	.+40     	; 0x37e <MDIO_enuSetPortValue+0x2c>
+    {
+        switch (Copy_enuPortNum)
+ 356:	81 30       	cpi	r24, 0x01	; 1
+ 358:	49 f0       	breq	.+18     	; 0x36c <MDIO_enuSetPortValue+0x1a>
+ 35a:	28 f0       	brcs	.+10     	; 0x366 <MDIO_enuSetPortValue+0x14>
+ 35c:	82 30       	cpi	r24, 0x02	; 2
+ 35e:	49 f0       	breq	.+18     	; 0x372 <MDIO_enuSetPortValue+0x20>
+ 360:	83 30       	cpi	r24, 0x03	; 3
+ 362:	51 f0       	breq	.+20     	; 0x378 <MDIO_enuSetPortValue+0x26>
+ 364:	0e c0       	rjmp	.+28     	; 0x382 <MDIO_enuSetPortValue+0x30>
+        {
+            case MDIO_PORTA: PORTA_REG = Copy_u8PortValue; break;
+ 366:	6b bb       	out	0x1b, r22	; 27
+            case MDIO_PORTB: PORTB_REG = Copy_u8PortValue; break;
+            case MDIO_PORTC: PORTC_REG = Copy_u8PortValue; break;
+            case MDIO_PORTD: PORTD_REG = Copy_u8PortValue; break;
+            default: return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 368:	80 e0       	ldi	r24, 0x00	; 0
+{
+    if (Copy_enuPortNum <= MDIO_PORTD)
+    {
+        switch (Copy_enuPortNum)
+        {
+            case MDIO_PORTA: PORTA_REG = Copy_u8PortValue; break;
+ 36a:	08 95       	ret
+            case MDIO_PORTB: PORTB_REG = Copy_u8PortValue; break;
+ 36c:	68 bb       	out	0x18, r22	; 24
+            case MDIO_PORTC: PORTC_REG = Copy_u8PortValue; break;
+            case MDIO_PORTD: PORTD_REG = Copy_u8PortValue; break;
+            default: return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 36e:	80 e0       	ldi	r24, 0x00	; 0
+    if (Copy_enuPortNum <= MDIO_PORTD)
+    {
+        switch (Copy_enuPortNum)
+        {
+            case MDIO_PORTA: PORTA_REG = Copy_u8PortValue; break;
+            case MDIO_PORTB: PORTB_REG = Copy_u8PortValue; break;
+ 370:	08 95       	ret
+            case MDIO_PORTC: PORTC_REG = Copy_u8PortValue; break;
+ 372:	65 bb       	out	0x15, r22	; 21
+            case MDIO_PORTD: PORTD_REG = Copy_u8PortValue; break;
+            default: return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 374:	80 e0       	ldi	r24, 0x00	; 0
+    {
+        switch (Copy_enuPortNum)
+        {
+            case MDIO_PORTA: PORTA_REG = Copy_u8PortValue; break;
+            case MDIO_PORTB: PORTB_REG = Copy_u8PortValue; break;
+            case MDIO_PORTC: PORTC_REG = Copy_u8PortValue; break;
+ 376:	08 95       	ret
+            case MDIO_PORTD: PORTD_REG = Copy_u8PortValue; break;
+ 378:	62 bb       	out	0x12, r22	; 18
+            default: return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 37a:	80 e0       	ldi	r24, 0x00	; 0
+        switch (Copy_enuPortNum)
+        {
+            case MDIO_PORTA: PORTA_REG = Copy_u8PortValue; break;
+            case MDIO_PORTB: PORTB_REG = Copy_u8PortValue; break;
+            case MDIO_PORTC: PORTC_REG = Copy_u8PortValue; break;
+            case MDIO_PORTD: PORTD_REG = Copy_u8PortValue; break;
+ 37c:	08 95       	ret
+            default: return MDIO_NOK;
+        }
+        return MDIO_OK;
+    }
+    return MDIO_NOK;
+ 37e:	81 e0       	ldi	r24, 0x01	; 1
+ 380:	08 95       	ret
+        {
+            case MDIO_PORTA: PORTA_REG = Copy_u8PortValue; break;
+            case MDIO_PORTB: PORTB_REG = Copy_u8PortValue; break;
+            case MDIO_PORTC: PORTC_REG = Copy_u8PortValue; break;
+            case MDIO_PORTD: PORTD_REG = Copy_u8PortValue; break;
+            default: return MDIO_NOK;
+ 382:	81 e0       	ldi	r24, 0x01	; 1
+        }
+        return MDIO_OK;
+    }
+    return MDIO_NOK;
+}
+ 384:	08 95       	ret
+
+00000386 <LCD_EnablePulse>:
+    LCD_Command(LCD_CLEAR_COMMAND); // Clear display
+    LCD_Command(LCD_ENTRY_MODE); // Entry mode: Increment cursor
+}
+
+void LCD_EnablePulse(void){
+	MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_EN, MDIO_HIGH); // Enable HIGH
+ 386:	41 e0       	ldi	r20, 0x01	; 1
+ 388:	62 e0       	ldi	r22, 0x02	; 2
+ 38a:	81 e0       	ldi	r24, 0x01	; 1
+ 38c:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 390:	00 00       	nop
+	_delay_us(1); // Short delay to let LCD latch data
+	MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_EN, MDIO_LOW); // Enable LOW (Data Latches)
+ 392:	40 e0       	ldi	r20, 0x00	; 0
+ 394:	62 e0       	ldi	r22, 0x02	; 2
+ 396:	81 e0       	ldi	r24, 0x01	; 1
+ 398:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 39c:	89 ef       	ldi	r24, 0xF9	; 249
+ 39e:	90 e0       	ldi	r25, 0x00	; 0
+ 3a0:	01 97       	sbiw	r24, 0x01	; 1
+ 3a2:	f1 f7       	brne	.-4      	; 0x3a0 <LCD_EnablePulse+0x1a>
+ 3a4:	00 c0       	rjmp	.+0      	; 0x3a6 <LCD_EnablePulse+0x20>
+ 3a6:	00 00       	nop
+ 3a8:	08 95       	ret
+
+000003aa <LCD_Command>:
+	_delay_ms(1); // Delay for command execution
+}
+
+void LCD_Command(u8 command){
+ 3aa:	cf 93       	push	r28
+ 3ac:	c8 2f       	mov	r28, r24
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_RS, MDIO_LOW); // RS = 0 for command
+ 3ae:	40 e0       	ldi	r20, 0x00	; 0
+ 3b0:	60 e0       	ldi	r22, 0x00	; 0
+ 3b2:	81 e0       	ldi	r24, 0x01	; 1
+ 3b4:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_RW, MDIO_LOW); // RW = 0 for write
+ 3b8:	40 e0       	ldi	r20, 0x00	; 0
+ 3ba:	61 e0       	ldi	r22, 0x01	; 1
+ 3bc:	81 e0       	ldi	r24, 0x01	; 1
+ 3be:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+
+    #if LCD_MODE == MODE_8BIT
+        MDIO_enuSetPortValue(LCD_DATA_PORT, command);
+ 3c2:	6c 2f       	mov	r22, r28
+ 3c4:	80 e0       	ldi	r24, 0x00	; 0
+ 3c6:	0e 94 a9 01 	call	0x352	; 0x352 <MDIO_enuSetPortValue>
+        LCD_EnablePulse();
+ 3ca:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_EnablePulse>
+ 3ce:	83 ef       	ldi	r24, 0xF3	; 243
+ 3d0:	91 e0       	ldi	r25, 0x01	; 1
+ 3d2:	01 97       	sbiw	r24, 0x01	; 1
+ 3d4:	f1 f7       	brne	.-4      	; 0x3d2 <LCD_Command+0x28>
+ 3d6:	00 c0       	rjmp	.+0      	; 0x3d8 <LCD_Command+0x2e>
+ 3d8:	00 00       	nop
+        MDIO_enuSetPortValue(LCD_DATA_PORT, ((command << 4) & 0xF0)); // Send lower nibble
+        LCD_EnablePulse();
+    #endif
+
+    _delay_ms(2); // Command execution delay
+}
+ 3da:	cf 91       	pop	r28
+ 3dc:	08 95       	ret
+
+000003de <LCD_Init>:
+
+
+void LCD_Init(void){
+    // Set data port as output (Full port for 8-bit, Upper 4 bits for 4-bit)
+    #if LCD_MODE == MODE_8BIT
+        MPORT_enuSetPortDirection(LCD_DATA_PORT, MPORT_OUTPUT);
+ 3de:	61 e0       	ldi	r22, 0x01	; 1
+ 3e0:	80 e0       	ldi	r24, 0x00	; 0
+ 3e2:	0e 94 d1 02 	call	0x5a2	; 0x5a2 <MPORT_enuSetPortDirection>
+    #elif LCD_MODE == MODE_4BIT
+        MPORT_enuSetPortDirection(LCD_DATA_PORT, 0xF0); // Upper 4 bits as output
+    #endif
+    
+    MDIO_enuSetPinConfigration(LCD_CTRL_PORT, LCD_RS, MDIO_OUTPUT);
+ 3e6:	41 e0       	ldi	r20, 0x01	; 1
+ 3e8:	60 e0       	ldi	r22, 0x00	; 0
+ 3ea:	81 e0       	ldi	r24, 0x01	; 1
+ 3ec:	0e 94 ca 00 	call	0x194	; 0x194 <MDIO_enuSetPinConfigration>
+    MDIO_enuSetPinConfigration(LCD_CTRL_PORT, LCD_RW, MDIO_OUTPUT);
+ 3f0:	41 e0       	ldi	r20, 0x01	; 1
+ 3f2:	61 e0       	ldi	r22, 0x01	; 1
+ 3f4:	81 e0       	ldi	r24, 0x01	; 1
+ 3f6:	0e 94 ca 00 	call	0x194	; 0x194 <MDIO_enuSetPinConfigration>
+    MDIO_enuSetPinConfigration(LCD_CTRL_PORT, LCD_EN, MDIO_OUTPUT);
+ 3fa:	41 e0       	ldi	r20, 0x01	; 1
+ 3fc:	62 e0       	ldi	r22, 0x02	; 2
+ 3fe:	81 e0       	ldi	r24, 0x01	; 1
+ 400:	0e 94 ca 00 	call	0x194	; 0x194 <MDIO_enuSetPinConfigration>
+
+    // Set control pins as output
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_RS, 1);
+ 404:	41 e0       	ldi	r20, 0x01	; 1
+ 406:	60 e0       	ldi	r22, 0x00	; 0
+ 408:	81 e0       	ldi	r24, 0x01	; 1
+ 40a:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_RW, 1);
+ 40e:	41 e0       	ldi	r20, 0x01	; 1
+ 410:	61 e0       	ldi	r22, 0x01	; 1
+ 412:	81 e0       	ldi	r24, 0x01	; 1
+ 414:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_EN, 1);
+ 418:	41 e0       	ldi	r20, 0x01	; 1
+ 41a:	62 e0       	ldi	r22, 0x02	; 2
+ 41c:	81 e0       	ldi	r24, 0x01	; 1
+ 41e:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+ 422:	83 ed       	ldi	r24, 0xD3	; 211
+ 424:	90 e3       	ldi	r25, 0x30	; 48
+ 426:	01 97       	sbiw	r24, 0x01	; 1
+ 428:	f1 f7       	brne	.-4      	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 42a:	00 c0       	rjmp	.+0      	; 0x42c <__EEPROM_REGION_LENGTH__+0x2c>
+ 42c:	00 00       	nop
+
+    _delay_ms(50); // Allow LCD to power up
+
+    // Initialize LCD in the selected mode
+    #if LCD_MODE == MODE_8BIT
+        LCD_Command(LCD_TWO_LINES_EIGHT_BITS_MODE); // 8-bit mode, 2-line, 5x8 font
+ 42e:	88 e3       	ldi	r24, 0x38	; 56
+ 430:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+        // 4-bit initialization sequence
+        LCD_Command(LCD_GO_TO_HOME);
+        LCD_Command(LCD_TWO_LINES_FOUR_BITS_MODE); // 4-bit mode, 2-line, 5x8 font
+    #endif
+
+    LCD_Command(LCD_CURSOR_BLINK); 
+ 434:	8f e0       	ldi	r24, 0x0F	; 15
+ 436:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+    LCD_Command(LCD_CLEAR_COMMAND); // Clear display
+ 43a:	81 e0       	ldi	r24, 0x01	; 1
+ 43c:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+    LCD_Command(LCD_ENTRY_MODE); // Entry mode: Increment cursor
+ 440:	86 e0       	ldi	r24, 0x06	; 6
+ 442:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+ 446:	08 95       	ret
+
+00000448 <LCD_SendChar>:
+        str++;
+    }
+}
+
+
+void LCD_SendChar(u8 data){
+ 448:	cf 93       	push	r28
+ 44a:	c8 2f       	mov	r28, r24
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_RS, MDIO_HIGH); // RS = 1 for data
+ 44c:	41 e0       	ldi	r20, 0x01	; 1
+ 44e:	60 e0       	ldi	r22, 0x00	; 0
+ 450:	81 e0       	ldi	r24, 0x01	; 1
+ 452:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+    MDIO_enuSetPinValue(LCD_CTRL_PORT, LCD_RW, MDIO_LOW);  // RW = 0 for write
+ 456:	40 e0       	ldi	r20, 0x00	; 0
+ 458:	61 e0       	ldi	r22, 0x01	; 1
+ 45a:	81 e0       	ldi	r24, 0x01	; 1
+ 45c:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_enuSetPinValue>
+
+    #if LCD_MODE == MODE_8BIT
+        MDIO_enuSetPortValue(LCD_DATA_PORT, data);
+ 460:	6c 2f       	mov	r22, r28
+ 462:	80 e0       	ldi	r24, 0x00	; 0
+ 464:	0e 94 a9 01 	call	0x352	; 0x352 <MDIO_enuSetPortValue>
+        LCD_EnablePulse();
+ 468:	0e 94 c3 01 	call	0x386	; 0x386 <LCD_EnablePulse>
+ 46c:	89 ef       	ldi	r24, 0xF9	; 249
+ 46e:	90 e0       	ldi	r25, 0x00	; 0
+ 470:	01 97       	sbiw	r24, 0x01	; 1
+ 472:	f1 f7       	brne	.-4      	; 0x470 <LCD_SendChar+0x28>
+ 474:	00 c0       	rjmp	.+0      	; 0x476 <LCD_SendChar+0x2e>
+ 476:	00 00       	nop
+        MDIO_enuSetPortValue(LCD_DATA_PORT, ((data << 4) & 0xF0)); // Send lower nibble
+        LCD_EnablePulse();
+    #endif
+
+    _delay_ms(1);
+}
+ 478:	cf 91       	pop	r28
+ 47a:	08 95       	ret
+
+0000047c <LCD_SendString>:
+    _delay_ms(2); // Command execution delay
+}
+
+
+
+void LCD_SendString(u8 *str){
+ 47c:	cf 93       	push	r28
+ 47e:	df 93       	push	r29
+ 480:	ec 01       	movw	r28, r24
+    while(*str != '\0'){
+ 482:	03 c0       	rjmp	.+6      	; 0x48a <LCD_SendString+0xe>
+        LCD_SendChar(*str);
+ 484:	0e 94 24 02 	call	0x448	; 0x448 <LCD_SendChar>
+        str++;
+ 488:	21 96       	adiw	r28, 0x01	; 1
+}
+
+
+
+void LCD_SendString(u8 *str){
+    while(*str != '\0'){
+ 48a:	88 81       	ld	r24, Y
+ 48c:	81 11       	cpse	r24, r1
+ 48e:	fa cf       	rjmp	.-12     	; 0x484 <LCD_SendString+0x8>
+        LCD_SendChar(*str);
+        str++;
+    }
+}
+ 490:	df 91       	pop	r29
+ 492:	cf 91       	pop	r28
+ 494:	08 95       	ret
+
+00000496 <LCD_Clear>:
+    #endif
+
+    _delay_ms(1);
+}
+void LCD_Clear(void){
+    LCD_Command(LCD_CLEAR_COMMAND);
+ 496:	81 e0       	ldi	r24, 0x01	; 1
+ 498:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+ 49c:	08 95       	ret
+
+0000049e <LCD_GoTo>:
+}
+
+void LCD_GoTo(u8 row, u8 col){
+    if(row == 0){
+ 49e:	81 11       	cpse	r24, r1
+ 4a0:	05 c0       	rjmp	.+10     	; 0x4ac <LCD_GoTo+0xe>
+        LCD_Command(0x80 + col);
+ 4a2:	80 e8       	ldi	r24, 0x80	; 128
+ 4a4:	86 0f       	add	r24, r22
+ 4a6:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+ 4aa:	08 95       	ret
+    }else if(row == 1){
+ 4ac:	81 30       	cpi	r24, 0x01	; 1
+ 4ae:	21 f4       	brne	.+8      	; 0x4b8 <LCD_GoTo+0x1a>
+        LCD_Command(0xc0 + col);
+ 4b0:	80 ec       	ldi	r24, 0xC0	; 192
+ 4b2:	86 0f       	add	r24, r22
+ 4b4:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+ 4b8:	08 95       	ret
+
+000004ba <LCD_Goto_CGRAM>:
+    }
+}
+
+void LCD_Goto_CGRAM(u8 BlockNumber){
+    LCD_Command(0x40 + (BlockNumber * 8));
+ 4ba:	90 e0       	ldi	r25, 0x00	; 0
+ 4bc:	08 96       	adiw	r24, 0x08	; 8
+ 4be:	88 0f       	add	r24, r24
+ 4c0:	88 0f       	add	r24, r24
+ 4c2:	88 0f       	add	r24, r24
+ 4c4:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+ 4c8:	08 95       	ret
+
+000004ca <StoreSpecialChar>:
+}
+
+void StoreSpecialChar(u8 *pattern,u8 BlockNumber){
+ 4ca:	0f 93       	push	r16
+ 4cc:	1f 93       	push	r17
+ 4ce:	cf 93       	push	r28
+ 4d0:	8c 01       	movw	r16, r24
+ 4d2:	86 2f       	mov	r24, r22
+    LCD_Goto_CGRAM(BlockNumber);
+ 4d4:	0e 94 5d 02 	call	0x4ba	; 0x4ba <LCD_Goto_CGRAM>
+    for(u8 i = 0; i < 8; i++){
+ 4d8:	c0 e0       	ldi	r28, 0x00	; 0
+ 4da:	07 c0       	rjmp	.+14     	; 0x4ea <StoreSpecialChar+0x20>
+        LCD_SendChar(pattern[i]);
+ 4dc:	f8 01       	movw	r30, r16
+ 4de:	ec 0f       	add	r30, r28
+ 4e0:	f1 1d       	adc	r31, r1
+ 4e2:	80 81       	ld	r24, Z
+ 4e4:	0e 94 24 02 	call	0x448	; 0x448 <LCD_SendChar>
+    LCD_Command(0x40 + (BlockNumber * 8));
+}
+
+void StoreSpecialChar(u8 *pattern,u8 BlockNumber){
+    LCD_Goto_CGRAM(BlockNumber);
+    for(u8 i = 0; i < 8; i++){
+ 4e8:	cf 5f       	subi	r28, 0xFF	; 255
+ 4ea:	c8 30       	cpi	r28, 0x08	; 8
+ 4ec:	b8 f3       	brcs	.-18     	; 0x4dc <StoreSpecialChar+0x12>
+        LCD_SendChar(pattern[i]);
+    }
+}
+ 4ee:	cf 91       	pop	r28
+ 4f0:	1f 91       	pop	r17
+ 4f2:	0f 91       	pop	r16
+ 4f4:	08 95       	ret
+
+000004f6 <LCD_WriteSpecialChar>:
+
+void LCD_WriteSpecialChar(u8 BlockNumber, u8 X, u8 Y) {
+ 4f6:	cf 93       	push	r28
+ 4f8:	c8 2f       	mov	r28, r24
+ 4fa:	86 2f       	mov	r24, r22
+	LCD_GoTo(X, Y);      // Move cursor to desired position
+ 4fc:	64 2f       	mov	r22, r20
+ 4fe:	0e 94 4f 02 	call	0x49e	; 0x49e <LCD_GoTo>
+	LCD_SendChar(BlockNumber); // Send the CGRAM block number (0 to 7) to display the stored character
+ 502:	8c 2f       	mov	r24, r28
+ 504:	0e 94 24 02 	call	0x448	; 0x448 <LCD_SendChar>
+}
+ 508:	cf 91       	pop	r28
+ 50a:	08 95       	ret
+
+0000050c <main>:
+#include "DIO.h"
+#include "PORT.h"
+#include <util/delay.h>
+
+int main(void)
+{
+ 50c:	cf 93       	push	r28
+ 50e:	df 93       	push	r29
+ 510:	cd b7       	in	r28, 0x3d	; 61
+ 512:	de b7       	in	r29, 0x3e	; 62
+ 514:	28 97       	sbiw	r28, 0x08	; 8
+ 516:	0f b6       	in	r0, 0x3f	; 63
+ 518:	f8 94       	cli
+ 51a:	de bf       	out	0x3e, r29	; 62
+ 51c:	0f be       	out	0x3f, r0	; 63
+ 51e:	cd bf       	out	0x3d, r28	; 61
+	LCD_Init();
+ 520:	0e 94 ef 01 	call	0x3de	; 0x3de <LCD_Init>
+
+	// Test LCD_SendChar by sending a single character
+	LCD_SendChar('A');
+ 524:	81 e4       	ldi	r24, 0x41	; 65
+ 526:	0e 94 24 02 	call	0x448	; 0x448 <LCD_SendChar>
+ 52a:	2f e9       	ldi	r18, 0x9F	; 159
+ 52c:	86 e8       	ldi	r24, 0x86	; 134
+ 52e:	91 e0       	ldi	r25, 0x01	; 1
+ 530:	21 50       	subi	r18, 0x01	; 1
+ 532:	80 40       	sbci	r24, 0x00	; 0
+ 534:	90 40       	sbci	r25, 0x00	; 0
+ 536:	e1 f7       	brne	.-8      	; 0x530 <main+0x24>
+ 538:	00 c0       	rjmp	.+0      	; 0x53a <main+0x2e>
+ 53a:	00 00       	nop
+	_delay_ms(500);
+	LCD_Command(0x01); // Clear display
+ 53c:	81 e0       	ldi	r24, 0x01	; 1
+ 53e:	0e 94 d5 01 	call	0x3aa	; 0x3aa <LCD_Command>
+ 542:	2f e9       	ldi	r18, 0x9F	; 159
+ 544:	86 e8       	ldi	r24, 0x86	; 134
+ 546:	91 e0       	ldi	r25, 0x01	; 1
+ 548:	21 50       	subi	r18, 0x01	; 1
+ 54a:	80 40       	sbci	r24, 0x00	; 0
+ 54c:	90 40       	sbci	r25, 0x00	; 0
+ 54e:	e1 f7       	brne	.-8      	; 0x548 <main+0x3c>
+ 550:	00 c0       	rjmp	.+0      	; 0x552 <main+0x46>
+ 552:	00 00       	nop
+	_delay_ms(500);
+	LCD_GoTo(0,7);
+ 554:	67 e0       	ldi	r22, 0x07	; 7
+ 556:	80 e0       	ldi	r24, 0x00	; 0
+ 558:	0e 94 4f 02 	call	0x49e	; 0x49e <LCD_GoTo>
+	// Test LCD_SendString by displaying a message
+	LCD_SendString((u8*)"Hello");
+ 55c:	88 e6       	ldi	r24, 0x68	; 104
+ 55e:	90 e0       	ldi	r25, 0x00	; 0
+ 560:	0e 94 3e 02 	call	0x47c	; 0x47c <LCD_SendString>
+	// Define a custom character pattern (example: a smiley face)
+	u8 smiley[8] = {0x00, 0x0A, 0x00, 0x11, 0x0E, 0x00, 0x00, 0x00};
+ 564:	88 e0       	ldi	r24, 0x08	; 8
+ 566:	e0 e6       	ldi	r30, 0x60	; 96
+ 568:	f0 e0       	ldi	r31, 0x00	; 0
+ 56a:	de 01       	movw	r26, r28
+ 56c:	11 96       	adiw	r26, 0x01	; 1
+ 56e:	01 90       	ld	r0, Z+
+ 570:	0d 92       	st	X+, r0
+ 572:	8a 95       	dec	r24
+ 574:	e1 f7       	brne	.-8      	; 0x56e <main+0x62>
+	// Store special character in CGRAM
+	StoreSpecialChar(smiley, 0);
+ 576:	60 e0       	ldi	r22, 0x00	; 0
+ 578:	ce 01       	movw	r24, r28
+ 57a:	01 96       	adiw	r24, 0x01	; 1
+ 57c:	0e 94 65 02 	call	0x4ca	; 0x4ca <StoreSpecialChar>
+	// Display the special character at position (1,1)
+	LCD_WriteSpecialChar(0, 1, 1);
+ 580:	41 e0       	ldi	r20, 0x01	; 1
+ 582:	61 e0       	ldi	r22, 0x01	; 1
+ 584:	80 e0       	ldi	r24, 0x00	; 0
+ 586:	0e 94 7b 02 	call	0x4f6	; 0x4f6 <LCD_WriteSpecialChar>
+ 58a:	2f e3       	ldi	r18, 0x3F	; 63
+ 58c:	8d e0       	ldi	r24, 0x0D	; 13
+ 58e:	93 e0       	ldi	r25, 0x03	; 3
+ 590:	21 50       	subi	r18, 0x01	; 1
+ 592:	80 40       	sbci	r24, 0x00	; 0
+ 594:	90 40       	sbci	r25, 0x00	; 0
+ 596:	e1 f7       	brne	.-8      	; 0x590 <main+0x84>
+ 598:	00 c0       	rjmp	.+0      	; 0x59a <main+0x8e>
+ 59a:	00 00       	nop
+	_delay_ms(1000);
+	LCD_Clear();
+ 59c:	0e 94 4b 02 	call	0x496	; 0x496 <LCD_Clear>
+ 5a0:	ff cf       	rjmp	.-2      	; 0x5a0 <main+0x94>
+
+000005a2 <MPORT_enuSetPortDirection>:
+//function functionality: set the direction of the port
+/***********************/
+MPORT_enuErrorStatus_t MPORT_enuSetPortDirection(u8 Copy_u8PortNum, u8 Copy_u8PortDirection)
+{
+	MPORT_enuErrorStatus_t status = MPORT_OK;
+	if (Copy_u8PortNum < 0 || Copy_u8PortNum > 3)
+ 5a2:	84 30       	cpi	r24, 0x04	; 4
+ 5a4:	c0 f5       	brcc	.+112    	; 0x616 <MPORT_enuSetPortDirection+0x74>
+	{
+		return MPORT_INVALID_PORT;
+	}
+
+	switch (Copy_u8PortNum)
+ 5a6:	81 30       	cpi	r24, 0x01	; 1
+ 5a8:	91 f0       	breq	.+36     	; 0x5ce <MPORT_enuSetPortDirection+0x2c>
+ 5aa:	28 f0       	brcs	.+10     	; 0x5b6 <MPORT_enuSetPortDirection+0x14>
+ 5ac:	82 30       	cpi	r24, 0x02	; 2
+ 5ae:	d9 f0       	breq	.+54     	; 0x5e6 <MPORT_enuSetPortDirection+0x44>
+ 5b0:	83 30       	cpi	r24, 0x03	; 3
+ 5b2:	29 f1       	breq	.+74     	; 0x5fe <MPORT_enuSetPortDirection+0x5c>
+ 5b4:	32 c0       	rjmp	.+100    	; 0x61a <MPORT_enuSetPortDirection+0x78>
+	{
+		case 0: // PORTA
+		switch (Copy_u8PortDirection)
+ 5b6:	66 23       	and	r22, r22
+ 5b8:	19 f0       	breq	.+6      	; 0x5c0 <MPORT_enuSetPortDirection+0x1e>
+ 5ba:	61 30       	cpi	r22, 0x01	; 1
+ 5bc:	21 f0       	breq	.+8      	; 0x5c6 <MPORT_enuSetPortDirection+0x24>
+ 5be:	2f c0       	rjmp	.+94     	; 0x61e <MPORT_enuSetPortDirection+0x7c>
+		{
+			case MPORT_INPUT:
+			DDRA_REG = 0x00; // Configure as input
+ 5c0:	1a ba       	out	0x1a, r1	; 26
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 5c2:	80 e0       	ldi	r24, 0x00	; 0
+		case 0: // PORTA
+		switch (Copy_u8PortDirection)
+		{
+			case MPORT_INPUT:
+			DDRA_REG = 0x00; // Configure as input
+			break;
+ 5c4:	08 95       	ret
+
+			case MPORT_OUTPUT:
+			DDRA_REG = 0xFF; // Configure as output
+ 5c6:	8f ef       	ldi	r24, 0xFF	; 255
+ 5c8:	8a bb       	out	0x1a, r24	; 26
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 5ca:	80 e0       	ldi	r24, 0x00	; 0
+			DDRA_REG = 0x00; // Configure as input
+			break;
+
+			case MPORT_OUTPUT:
+			DDRA_REG = 0xFF; // Configure as output
+			break;
+ 5cc:	08 95       	ret
+			return MPORT_ERROR_INVALID_DIRECTION;
+		}
+		break;
+
+		case 1: // PORTB
+		switch (Copy_u8PortDirection)
+ 5ce:	66 23       	and	r22, r22
+ 5d0:	19 f0       	breq	.+6      	; 0x5d8 <MPORT_enuSetPortDirection+0x36>
+ 5d2:	61 30       	cpi	r22, 0x01	; 1
+ 5d4:	21 f0       	breq	.+8      	; 0x5de <MPORT_enuSetPortDirection+0x3c>
+ 5d6:	25 c0       	rjmp	.+74     	; 0x622 <MPORT_enuSetPortDirection+0x80>
+		{
+			case MPORT_INPUT:
+			DDRB_REG = 0x00;
+ 5d8:	17 ba       	out	0x17, r1	; 23
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 5da:	80 e0       	ldi	r24, 0x00	; 0
+		case 1: // PORTB
+		switch (Copy_u8PortDirection)
+		{
+			case MPORT_INPUT:
+			DDRB_REG = 0x00;
+			break;
+ 5dc:	08 95       	ret
+
+			case MPORT_OUTPUT:
+			DDRB_REG = 0xFF;
+ 5de:	8f ef       	ldi	r24, 0xFF	; 255
+ 5e0:	87 bb       	out	0x17, r24	; 23
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 5e2:	80 e0       	ldi	r24, 0x00	; 0
+			DDRB_REG = 0x00;
+			break;
+
+			case MPORT_OUTPUT:
+			DDRB_REG = 0xFF;
+			break;
+ 5e4:	08 95       	ret
+			return MPORT_ERROR_INVALID_DIRECTION;
+		}
+		break;
+
+		case 2: // PORTC
+		switch (Copy_u8PortDirection)
+ 5e6:	66 23       	and	r22, r22
+ 5e8:	19 f0       	breq	.+6      	; 0x5f0 <MPORT_enuSetPortDirection+0x4e>
+ 5ea:	61 30       	cpi	r22, 0x01	; 1
+ 5ec:	21 f0       	breq	.+8      	; 0x5f6 <MPORT_enuSetPortDirection+0x54>
+ 5ee:	1b c0       	rjmp	.+54     	; 0x626 <MPORT_enuSetPortDirection+0x84>
+		{
+			case MPORT_INPUT:
+			DDRC_REG = 0x00;
+ 5f0:	14 ba       	out	0x14, r1	; 20
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 5f2:	80 e0       	ldi	r24, 0x00	; 0
+		case 2: // PORTC
+		switch (Copy_u8PortDirection)
+		{
+			case MPORT_INPUT:
+			DDRC_REG = 0x00;
+			break;
+ 5f4:	08 95       	ret
+
+			case MPORT_OUTPUT:
+			DDRC_REG = 0xFF;
+ 5f6:	8f ef       	ldi	r24, 0xFF	; 255
+ 5f8:	84 bb       	out	0x14, r24	; 20
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 5fa:	80 e0       	ldi	r24, 0x00	; 0
+			DDRC_REG = 0x00;
+			break;
+
+			case MPORT_OUTPUT:
+			DDRC_REG = 0xFF;
+			break;
+ 5fc:	08 95       	ret
+			return MPORT_ERROR_INVALID_DIRECTION;
+		}
+		break;
+
+		case 3: // PORTD
+		switch (Copy_u8PortDirection)
+ 5fe:	66 23       	and	r22, r22
+ 600:	19 f0       	breq	.+6      	; 0x608 <MPORT_enuSetPortDirection+0x66>
+ 602:	61 30       	cpi	r22, 0x01	; 1
+ 604:	21 f0       	breq	.+8      	; 0x60e <MPORT_enuSetPortDirection+0x6c>
+ 606:	11 c0       	rjmp	.+34     	; 0x62a <MPORT_enuSetPortDirection+0x88>
+		{
+			case MPORT_INPUT:
+			DDRD_REG = 0x00;
+ 608:	11 ba       	out	0x11, r1	; 17
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 60a:	80 e0       	ldi	r24, 0x00	; 0
+		case 3: // PORTD
+		switch (Copy_u8PortDirection)
+		{
+			case MPORT_INPUT:
+			DDRD_REG = 0x00;
+			break;
+ 60c:	08 95       	ret
+
+			case MPORT_OUTPUT:
+			DDRD_REG = 0xFF;
+ 60e:	8f ef       	ldi	r24, 0xFF	; 255
+ 610:	81 bb       	out	0x11, r24	; 17
+
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 612:	80 e0       	ldi	r24, 0x00	; 0
+			DDRD_REG = 0x00;
+			break;
+
+			case MPORT_OUTPUT:
+			DDRD_REG = 0xFF;
+			break;
+ 614:	08 95       	ret
+MPORT_enuErrorStatus_t MPORT_enuSetPortDirection(u8 Copy_u8PortNum, u8 Copy_u8PortDirection)
+{
+	MPORT_enuErrorStatus_t status = MPORT_OK;
+	if (Copy_u8PortNum < 0 || Copy_u8PortNum > 3)
+	{
+		return MPORT_INVALID_PORT;
+ 616:	83 e0       	ldi	r24, 0x03	; 3
+ 618:	08 95       	ret
+			return MPORT_ERROR_INVALID_DIRECTION;
+		}
+		break;
+
+		default:
+		return MPORT_INVALID_PORT;
+ 61a:	83 e0       	ldi	r24, 0x03	; 3
+ 61c:	08 95       	ret
+			case MPORT_OUTPUT:
+			DDRA_REG = 0xFF; // Configure as output
+			break;
+
+			default:
+			return MPORT_ERROR_INVALID_DIRECTION;
+ 61e:	87 e0       	ldi	r24, 0x07	; 7
+ 620:	08 95       	ret
+			case MPORT_OUTPUT:
+			DDRB_REG = 0xFF;
+			break;
+
+			default:
+			return MPORT_ERROR_INVALID_DIRECTION;
+ 622:	87 e0       	ldi	r24, 0x07	; 7
+ 624:	08 95       	ret
+			case MPORT_OUTPUT:
+			DDRC_REG = 0xFF;
+			break;
+
+			default:
+			return MPORT_ERROR_INVALID_DIRECTION;
+ 626:	87 e0       	ldi	r24, 0x07	; 7
+ 628:	08 95       	ret
+			case MPORT_OUTPUT:
+			DDRD_REG = 0xFF;
+			break;
+
+			default:
+			return MPORT_ERROR_INVALID_DIRECTION;
+ 62a:	87 e0       	ldi	r24, 0x07	; 7
+		default:
+		return MPORT_INVALID_PORT;
+		break;
+	}
+	return status;
+ 62c:	08 95       	ret
+
+0000062e <_exit>:
+ 62e:	f8 94       	cli
+
+00000630 <__stop_program>:
+ 630:	ff cf       	rjmp	.-2      	; 0x630 <__stop_program>
