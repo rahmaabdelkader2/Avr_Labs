@@ -1,9 +1,10 @@
+#include "bit_math.h"
 #include "stdtypes.h"
-#include "LCD.h"
-#include "LCD_config.h"
-#include "LCD_private.h"
 #include "DIO.h"
 #include "PORT.h"
+#include "LCD.h"
+#include "LCD_config.h"
+#include "LCD_Private.h"
 #include <util/delay.h>
 
 

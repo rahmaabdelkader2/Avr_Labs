@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "dio_private.h": "c",
+        "keypad_config.h": "c",
+        "keypad.h": "c",
+        "port_config.h": "c",
+        "dio.h": "c",
+        "lcd_private.h": "c",
+        "stdtypes.h": "c",
+        "bit_math.h": "c"
+    }
+}
