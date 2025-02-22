@@ -1,0 +1,1272 @@
+
+lab9_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004e4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000558  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800060  00800060  00000558  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000558  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000588  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000c8  00000000  00000000  000005c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000c7e  00000000  00000000  0000068c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006de  00000000  00000000  0000130a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000094f  00000000  00000000  000019e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000184  00000000  00000000  00002338  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000075b  00000000  00000000  000024bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000008ba  00000000  00000000  00002c17  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000098  00000000  00000000  000034d1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 27 02 	jmp	0x44e	; 0x44e <__vector_1>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 ee       	ldi	r30, 0xE4	; 228
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a1 36       	cpi	r26, 0x61	; 97
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 5d 02 	call	0x4ba	; 0x4ba <main>
+  8a:	0c 94 70 02 	jmp	0x4e0	; 0x4e0 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <MDIO_enuSetPinValue>:
+#include "DIO_Private.h"
+
+MDIO_enuErrorStatus_t MDIO_enuSetPinValue(MDIO_enuPortNum_t Copy_enuPortNum, MDIO_enuPinNum_t Copy_enuPinNum, MDIO_enuPinConfiguration_t Copy_enuPinConfiguration)
+{
+    // Validate pin number
+    if (Copy_enuPinNum > MDIO_PIN7)
+  92:	68 30       	cpi	r22, 0x08	; 8
+  94:	08 f0       	brcs	.+2      	; 0x98 <MDIO_enuSetPinValue+0x6>
+  96:	7c c0       	rjmp	.+248    	; 0x190 <MDIO_enuSetPinValue+0xfe>
+    {
+        return MDIO_INVALID_PIN; // Return error if pin number is invalid
+    }
+
+    // Validate port number
+    if (Copy_enuPortNum > MDIO_PORTD)
+  98:	84 30       	cpi	r24, 0x04	; 4
+  9a:	08 f0       	brcs	.+2      	; 0x9e <MDIO_enuSetPinValue+0xc>
+  9c:	7b c0       	rjmp	.+246    	; 0x194 <MDIO_enuSetPinValue+0x102>
+    {
+        return MDIO_INVALID_PORT; // Return error if port number is invalid
+    }
+
+    // Set or clear the pin based on the configuration
+    switch (Copy_enuPinConfiguration)
+  9e:	44 23       	and	r20, r20
+  a0:	d9 f1       	breq	.+118    	; 0x118 <MDIO_enuSetPinValue+0x86>
+  a2:	41 30       	cpi	r20, 0x01	; 1
+  a4:	09 f0       	breq	.+2      	; 0xa8 <MDIO_enuSetPinValue+0x16>
+  a6:	78 c0       	rjmp	.+240    	; 0x198 <MDIO_enuSetPinValue+0x106>
+    {
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+  a8:	81 30       	cpi	r24, 0x01	; 1
+  aa:	91 f0       	breq	.+36     	; 0xd0 <MDIO_enuSetPinValue+0x3e>
+  ac:	28 f0       	brcs	.+10     	; 0xb8 <MDIO_enuSetPinValue+0x26>
+  ae:	82 30       	cpi	r24, 0x02	; 2
+  b0:	d9 f0       	breq	.+54     	; 0xe8 <MDIO_enuSetPinValue+0x56>
+  b2:	83 30       	cpi	r24, 0x03	; 3
+  b4:	29 f1       	breq	.+74     	; 0x100 <MDIO_enuSetPinValue+0x6e>
+  b6:	72 c0       	rjmp	.+228    	; 0x19c <MDIO_enuSetPinValue+0x10a>
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+  b8:	2b b3       	in	r18, 0x1b	; 27
+  ba:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <MDIO_enuSetPinValue+0x32>
+  c0:	88 0f       	add	r24, r24
+  c2:	99 1f       	adc	r25, r25
+  c4:	6a 95       	dec	r22
+  c6:	e2 f7       	brpl	.-8      	; 0xc0 <MDIO_enuSetPinValue+0x2e>
+  c8:	82 2b       	or	r24, r18
+  ca:	8b bb       	out	0x1b, r24	; 27
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+  cc:	80 e0       	ldi	r24, 0x00	; 0
+    switch (Copy_enuPinConfiguration)
+    {
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+  ce:	08 95       	ret
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+  d0:	28 b3       	in	r18, 0x18	; 24
+  d2:	81 e0       	ldi	r24, 0x01	; 1
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+  d6:	02 c0       	rjmp	.+4      	; 0xdc <MDIO_enuSetPinValue+0x4a>
+  d8:	88 0f       	add	r24, r24
+  da:	99 1f       	adc	r25, r25
+  dc:	6a 95       	dec	r22
+  de:	e2 f7       	brpl	.-8      	; 0xd8 <MDIO_enuSetPinValue+0x46>
+  e0:	82 2b       	or	r24, r18
+  e2:	88 bb       	out	0x18, r24	; 24
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+  e4:	80 e0       	ldi	r24, 0x00	; 0
+    {
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+  e6:	08 95       	ret
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+  e8:	25 b3       	in	r18, 0x15	; 21
+  ea:	81 e0       	ldi	r24, 0x01	; 1
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	02 c0       	rjmp	.+4      	; 0xf4 <MDIO_enuSetPinValue+0x62>
+  f0:	88 0f       	add	r24, r24
+  f2:	99 1f       	adc	r25, r25
+  f4:	6a 95       	dec	r22
+  f6:	e2 f7       	brpl	.-8      	; 0xf0 <MDIO_enuSetPinValue+0x5e>
+  f8:	82 2b       	or	r24, r18
+  fa:	85 bb       	out	0x15, r24	; 21
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+        case MDIO_HIGH:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+  fe:	08 95       	ret
+                case MDIO_PORTD: SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 100:	22 b3       	in	r18, 0x12	; 18
+ 102:	81 e0       	ldi	r24, 0x01	; 1
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+ 106:	02 c0       	rjmp	.+4      	; 0x10c <MDIO_enuSetPinValue+0x7a>
+ 108:	88 0f       	add	r24, r24
+ 10a:	99 1f       	adc	r25, r25
+ 10c:	6a 95       	dec	r22
+ 10e:	e2 f7       	brpl	.-8      	; 0x108 <MDIO_enuSetPinValue+0x76>
+ 110:	82 2b       	or	r24, r18
+ 112:	82 bb       	out	0x12, r24	; 18
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 114:	80 e0       	ldi	r24, 0x00	; 0
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 116:	08 95       	ret
+                default: return MDIO_NOK; // This should never happen due to the validation above
+            }
+            break;
+
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+ 118:	81 30       	cpi	r24, 0x01	; 1
+ 11a:	99 f0       	breq	.+38     	; 0x142 <MDIO_enuSetPinValue+0xb0>
+ 11c:	28 f0       	brcs	.+10     	; 0x128 <MDIO_enuSetPinValue+0x96>
+ 11e:	82 30       	cpi	r24, 0x02	; 2
+ 120:	e9 f0       	breq	.+58     	; 0x15c <MDIO_enuSetPinValue+0xca>
+ 122:	83 30       	cpi	r24, 0x03	; 3
+ 124:	41 f1       	breq	.+80     	; 0x176 <MDIO_enuSetPinValue+0xe4>
+ 126:	3c c0       	rjmp	.+120    	; 0x1a0 <MDIO_enuSetPinValue+0x10e>
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 128:	2b b3       	in	r18, 0x1b	; 27
+ 12a:	81 e0       	ldi	r24, 0x01	; 1
+ 12c:	90 e0       	ldi	r25, 0x00	; 0
+ 12e:	02 c0       	rjmp	.+4      	; 0x134 <MDIO_enuSetPinValue+0xa2>
+ 130:	88 0f       	add	r24, r24
+ 132:	99 1f       	adc	r25, r25
+ 134:	6a 95       	dec	r22
+ 136:	e2 f7       	brpl	.-8      	; 0x130 <MDIO_enuSetPinValue+0x9e>
+ 138:	80 95       	com	r24
+ 13a:	82 23       	and	r24, r18
+ 13c:	8b bb       	out	0x1b, r24	; 27
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 13e:	80 e0       	ldi	r24, 0x00	; 0
+            break;
+
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 140:	08 95       	ret
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 142:	28 b3       	in	r18, 0x18	; 24
+ 144:	81 e0       	ldi	r24, 0x01	; 1
+ 146:	90 e0       	ldi	r25, 0x00	; 0
+ 148:	02 c0       	rjmp	.+4      	; 0x14e <MDIO_enuSetPinValue+0xbc>
+ 14a:	88 0f       	add	r24, r24
+ 14c:	99 1f       	adc	r25, r25
+ 14e:	6a 95       	dec	r22
+ 150:	e2 f7       	brpl	.-8      	; 0x14a <MDIO_enuSetPinValue+0xb8>
+ 152:	80 95       	com	r24
+ 154:	82 23       	and	r24, r18
+ 156:	88 bb       	out	0x18, r24	; 24
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 158:	80 e0       	ldi	r24, 0x00	; 0
+
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 15a:	08 95       	ret
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 15c:	25 b3       	in	r18, 0x15	; 21
+ 15e:	81 e0       	ldi	r24, 0x01	; 1
+ 160:	90 e0       	ldi	r25, 0x00	; 0
+ 162:	02 c0       	rjmp	.+4      	; 0x168 <MDIO_enuSetPinValue+0xd6>
+ 164:	88 0f       	add	r24, r24
+ 166:	99 1f       	adc	r25, r25
+ 168:	6a 95       	dec	r22
+ 16a:	e2 f7       	brpl	.-8      	; 0x164 <MDIO_enuSetPinValue+0xd2>
+ 16c:	80 95       	com	r24
+ 16e:	82 23       	and	r24, r18
+ 170:	85 bb       	out	0x15, r24	; 21
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 172:	80 e0       	ldi	r24, 0x00	; 0
+        case MDIO_LOW:
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 174:	08 95       	ret
+                case MDIO_PORTD: CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 176:	22 b3       	in	r18, 0x12	; 18
+ 178:	81 e0       	ldi	r24, 0x01	; 1
+ 17a:	90 e0       	ldi	r25, 0x00	; 0
+ 17c:	02 c0       	rjmp	.+4      	; 0x182 <MDIO_enuSetPinValue+0xf0>
+ 17e:	88 0f       	add	r24, r24
+ 180:	99 1f       	adc	r25, r25
+ 182:	6a 95       	dec	r22
+ 184:	e2 f7       	brpl	.-8      	; 0x17e <MDIO_enuSetPinValue+0xec>
+ 186:	80 95       	com	r24
+ 188:	82 23       	and	r24, r18
+ 18a:	82 bb       	out	0x12, r24	; 18
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+ 18c:	80 e0       	ldi	r24, 0x00	; 0
+            switch (Copy_enuPortNum)
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 18e:	08 95       	ret
+MDIO_enuErrorStatus_t MDIO_enuSetPinValue(MDIO_enuPortNum_t Copy_enuPortNum, MDIO_enuPinNum_t Copy_enuPinNum, MDIO_enuPinConfiguration_t Copy_enuPinConfiguration)
+{
+    // Validate pin number
+    if (Copy_enuPinNum > MDIO_PIN7)
+    {
+        return MDIO_INVALID_PIN; // Return error if pin number is invalid
+ 190:	82 e0       	ldi	r24, 0x02	; 2
+ 192:	08 95       	ret
+    }
+
+    // Validate port number
+    if (Copy_enuPortNum > MDIO_PORTD)
+    {
+        return MDIO_INVALID_PORT; // Return error if port number is invalid
+ 194:	83 e0       	ldi	r24, 0x03	; 3
+ 196:	08 95       	ret
+                default: return MDIO_NOK; // This should never happen due to the validation above
+            }
+            break;
+
+        default:
+            return MDIO_NOK; // Invalid configuration
+ 198:	81 e0       	ldi	r24, 0x01	; 1
+ 19a:	08 95       	ret
+            {
+                case MDIO_PORTA: SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+                default: return MDIO_NOK; // This should never happen due to the validation above
+ 19c:	81 e0       	ldi	r24, 0x01	; 1
+ 19e:	08 95       	ret
+            {
+                case MDIO_PORTA: CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                case MDIO_PORTB: CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                case MDIO_PORTC: CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                case MDIO_PORTD: CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+                default: return MDIO_NOK; // This should never happen due to the validation above
+ 1a0:	81 e0       	ldi	r24, 0x01	; 1
+        default:
+            return MDIO_NOK; // Invalid configuration
+    }
+
+    return MDIO_OK; // Success
+}
+ 1a2:	08 95       	ret
+
+000001a4 <MDIO_enuSetPinConfigration>:
+
+// Function to configure a pin direction
+MDIO_enuErrorStatus_t MDIO_enuSetPinConfigration(MDIO_enuPortNum_t Copy_enuPortNum, MDIO_enuPinNum_t Copy_enuPinNum, u8 Copy_u8PinDir)
+{
+    
+        switch (Copy_u8PinDir)
+ 1a4:	41 30       	cpi	r20, 0x01	; 1
+ 1a6:	29 f0       	breq	.+10     	; 0x1b2 <MDIO_enuSetPinConfigration+0xe>
+ 1a8:	e0 f1       	brcs	.+120    	; 0x222 <MDIO_enuSetPinConfigration+0x7e>
+ 1aa:	42 30       	cpi	r20, 0x02	; 2
+ 1ac:	09 f4       	brne	.+2      	; 0x1b0 <MDIO_enuSetPinConfigration+0xc>
+ 1ae:	85 c0       	rjmp	.+266    	; 0x2ba <MDIO_enuSetPinConfigration+0x116>
+ 1b0:	d0 c0       	rjmp	.+416    	; 0x352 <MDIO_enuSetPinConfigration+0x1ae>
+        {
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+ 1b2:	81 30       	cpi	r24, 0x01	; 1
+ 1b4:	91 f0       	breq	.+36     	; 0x1da <MDIO_enuSetPinConfigration+0x36>
+ 1b6:	28 f0       	brcs	.+10     	; 0x1c2 <MDIO_enuSetPinConfigration+0x1e>
+ 1b8:	82 30       	cpi	r24, 0x02	; 2
+ 1ba:	d9 f0       	breq	.+54     	; 0x1f2 <MDIO_enuSetPinConfigration+0x4e>
+ 1bc:	83 30       	cpi	r24, 0x03	; 3
+ 1be:	29 f1       	breq	.+74     	; 0x20a <MDIO_enuSetPinConfigration+0x66>
+ 1c0:	ca c0       	rjmp	.+404    	; 0x356 <MDIO_enuSetPinConfigration+0x1b2>
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+ 1c2:	2a b3       	in	r18, 0x1a	; 26
+ 1c4:	81 e0       	ldi	r24, 0x01	; 1
+ 1c6:	90 e0       	ldi	r25, 0x00	; 0
+ 1c8:	02 c0       	rjmp	.+4      	; 0x1ce <MDIO_enuSetPinConfigration+0x2a>
+ 1ca:	88 0f       	add	r24, r24
+ 1cc:	99 1f       	adc	r25, r25
+ 1ce:	6a 95       	dec	r22
+ 1d0:	e2 f7       	brpl	.-8      	; 0x1ca <MDIO_enuSetPinConfigration+0x26>
+ 1d2:	82 2b       	or	r24, r18
+ 1d4:	8a bb       	out	0x1a, r24	; 26
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 1d6:	80 e0       	ldi	r24, 0x00	; 0
+        switch (Copy_u8PinDir)
+        {
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+ 1d8:	08 95       	ret
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+ 1da:	27 b3       	in	r18, 0x17	; 23
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	02 c0       	rjmp	.+4      	; 0x1e6 <MDIO_enuSetPinConfigration+0x42>
+ 1e2:	88 0f       	add	r24, r24
+ 1e4:	99 1f       	adc	r25, r25
+ 1e6:	6a 95       	dec	r22
+ 1e8:	e2 f7       	brpl	.-8      	; 0x1e2 <MDIO_enuSetPinConfigration+0x3e>
+ 1ea:	82 2b       	or	r24, r18
+ 1ec:	87 bb       	out	0x17, r24	; 23
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 1ee:	80 e0       	ldi	r24, 0x00	; 0
+        {
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+ 1f0:	08 95       	ret
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+ 1f2:	24 b3       	in	r18, 0x14	; 20
+ 1f4:	81 e0       	ldi	r24, 0x01	; 1
+ 1f6:	90 e0       	ldi	r25, 0x00	; 0
+ 1f8:	02 c0       	rjmp	.+4      	; 0x1fe <MDIO_enuSetPinConfigration+0x5a>
+ 1fa:	88 0f       	add	r24, r24
+ 1fc:	99 1f       	adc	r25, r25
+ 1fe:	6a 95       	dec	r22
+ 200:	e2 f7       	brpl	.-8      	; 0x1fa <MDIO_enuSetPinConfigration+0x56>
+ 202:	82 2b       	or	r24, r18
+ 204:	84 bb       	out	0x14, r24	; 20
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 206:	80 e0       	ldi	r24, 0x00	; 0
+            case MDIO_OUTPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+ 208:	08 95       	ret
+                    case MDIO_PORTD: SET_BIT(DDRD_REG, Copy_enuPinNum); break;
+ 20a:	21 b3       	in	r18, 0x11	; 17
+ 20c:	81 e0       	ldi	r24, 0x01	; 1
+ 20e:	90 e0       	ldi	r25, 0x00	; 0
+ 210:	02 c0       	rjmp	.+4      	; 0x216 <MDIO_enuSetPinConfigration+0x72>
+ 212:	88 0f       	add	r24, r24
+ 214:	99 1f       	adc	r25, r25
+ 216:	6a 95       	dec	r22
+ 218:	e2 f7       	brpl	.-8      	; 0x212 <MDIO_enuSetPinConfigration+0x6e>
+ 21a:	82 2b       	or	r24, r18
+ 21c:	81 bb       	out	0x11, r24	; 17
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 21e:	80 e0       	ldi	r24, 0x00	; 0
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: SET_BIT(DDRD_REG, Copy_enuPinNum); break;
+ 220:	08 95       	ret
+                    default: return MDIO_NOK;
+                }
+                break;
+
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+ 222:	81 30       	cpi	r24, 0x01	; 1
+ 224:	b9 f0       	breq	.+46     	; 0x254 <MDIO_enuSetPinConfigration+0xb0>
+ 226:	28 f0       	brcs	.+10     	; 0x232 <MDIO_enuSetPinConfigration+0x8e>
+ 228:	82 30       	cpi	r24, 0x02	; 2
+ 22a:	29 f1       	breq	.+74     	; 0x276 <MDIO_enuSetPinConfigration+0xd2>
+ 22c:	83 30       	cpi	r24, 0x03	; 3
+ 22e:	a1 f1       	breq	.+104    	; 0x298 <MDIO_enuSetPinConfigration+0xf4>
+ 230:	94 c0       	rjmp	.+296    	; 0x35a <MDIO_enuSetPinConfigration+0x1b6>
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 232:	2a b3       	in	r18, 0x1a	; 26
+ 234:	81 e0       	ldi	r24, 0x01	; 1
+ 236:	90 e0       	ldi	r25, 0x00	; 0
+ 238:	02 c0       	rjmp	.+4      	; 0x23e <MDIO_enuSetPinConfigration+0x9a>
+ 23a:	88 0f       	add	r24, r24
+ 23c:	99 1f       	adc	r25, r25
+ 23e:	6a 95       	dec	r22
+ 240:	e2 f7       	brpl	.-8      	; 0x23a <MDIO_enuSetPinConfigration+0x96>
+ 242:	80 95       	com	r24
+ 244:	92 2f       	mov	r25, r18
+ 246:	98 23       	and	r25, r24
+ 248:	9a bb       	out	0x1a, r25	; 26
+ 24a:	9b b3       	in	r25, 0x1b	; 27
+ 24c:	89 23       	and	r24, r25
+ 24e:	8b bb       	out	0x1b, r24	; 27
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 250:	80 e0       	ldi	r24, 0x00	; 0
+                break;
+
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 252:	08 95       	ret
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 254:	27 b3       	in	r18, 0x17	; 23
+ 256:	81 e0       	ldi	r24, 0x01	; 1
+ 258:	90 e0       	ldi	r25, 0x00	; 0
+ 25a:	02 c0       	rjmp	.+4      	; 0x260 <MDIO_enuSetPinConfigration+0xbc>
+ 25c:	88 0f       	add	r24, r24
+ 25e:	99 1f       	adc	r25, r25
+ 260:	6a 95       	dec	r22
+ 262:	e2 f7       	brpl	.-8      	; 0x25c <MDIO_enuSetPinConfigration+0xb8>
+ 264:	80 95       	com	r24
+ 266:	92 2f       	mov	r25, r18
+ 268:	98 23       	and	r25, r24
+ 26a:	97 bb       	out	0x17, r25	; 23
+ 26c:	98 b3       	in	r25, 0x18	; 24
+ 26e:	89 23       	and	r24, r25
+ 270:	88 bb       	out	0x18, r24	; 24
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 272:	80 e0       	ldi	r24, 0x00	; 0
+
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 274:	08 95       	ret
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 276:	24 b3       	in	r18, 0x14	; 20
+ 278:	81 e0       	ldi	r24, 0x01	; 1
+ 27a:	90 e0       	ldi	r25, 0x00	; 0
+ 27c:	02 c0       	rjmp	.+4      	; 0x282 <MDIO_enuSetPinConfigration+0xde>
+ 27e:	88 0f       	add	r24, r24
+ 280:	99 1f       	adc	r25, r25
+ 282:	6a 95       	dec	r22
+ 284:	e2 f7       	brpl	.-8      	; 0x27e <MDIO_enuSetPinConfigration+0xda>
+ 286:	80 95       	com	r24
+ 288:	92 2f       	mov	r25, r18
+ 28a:	98 23       	and	r25, r24
+ 28c:	94 bb       	out	0x14, r25	; 20
+ 28e:	95 b3       	in	r25, 0x15	; 21
+ 290:	89 23       	and	r24, r25
+ 292:	85 bb       	out	0x15, r24	; 21
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 294:	80 e0       	ldi	r24, 0x00	; 0
+            case MDIO_INPUT:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 296:	08 95       	ret
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 298:	21 b3       	in	r18, 0x11	; 17
+ 29a:	81 e0       	ldi	r24, 0x01	; 1
+ 29c:	90 e0       	ldi	r25, 0x00	; 0
+ 29e:	02 c0       	rjmp	.+4      	; 0x2a4 <MDIO_enuSetPinConfigration+0x100>
+ 2a0:	88 0f       	add	r24, r24
+ 2a2:	99 1f       	adc	r25, r25
+ 2a4:	6a 95       	dec	r22
+ 2a6:	e2 f7       	brpl	.-8      	; 0x2a0 <MDIO_enuSetPinConfigration+0xfc>
+ 2a8:	80 95       	com	r24
+ 2aa:	92 2f       	mov	r25, r18
+ 2ac:	98 23       	and	r25, r24
+ 2ae:	91 bb       	out	0x11, r25	; 17
+ 2b0:	92 b3       	in	r25, 0x12	; 18
+ 2b2:	89 23       	and	r24, r25
+ 2b4:	82 bb       	out	0x12, r24	; 18
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 2b6:	80 e0       	ldi	r24, 0x00	; 0
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 2b8:	08 95       	ret
+                    default: return MDIO_NOK;
+                }
+                break;
+
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+ 2ba:	81 30       	cpi	r24, 0x01	; 1
+ 2bc:	b9 f0       	breq	.+46     	; 0x2ec <MDIO_enuSetPinConfigration+0x148>
+ 2be:	28 f0       	brcs	.+10     	; 0x2ca <MDIO_enuSetPinConfigration+0x126>
+ 2c0:	82 30       	cpi	r24, 0x02	; 2
+ 2c2:	29 f1       	breq	.+74     	; 0x30e <MDIO_enuSetPinConfigration+0x16a>
+ 2c4:	83 30       	cpi	r24, 0x03	; 3
+ 2c6:	a1 f1       	breq	.+104    	; 0x330 <MDIO_enuSetPinConfigration+0x18c>
+ 2c8:	4a c0       	rjmp	.+148    	; 0x35e <MDIO_enuSetPinConfigration+0x1ba>
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 2ca:	2a b3       	in	r18, 0x1a	; 26
+ 2cc:	81 e0       	ldi	r24, 0x01	; 1
+ 2ce:	90 e0       	ldi	r25, 0x00	; 0
+ 2d0:	02 c0       	rjmp	.+4      	; 0x2d6 <MDIO_enuSetPinConfigration+0x132>
+ 2d2:	88 0f       	add	r24, r24
+ 2d4:	99 1f       	adc	r25, r25
+ 2d6:	6a 95       	dec	r22
+ 2d8:	e2 f7       	brpl	.-8      	; 0x2d2 <MDIO_enuSetPinConfigration+0x12e>
+ 2da:	98 2f       	mov	r25, r24
+ 2dc:	90 95       	com	r25
+ 2de:	92 23       	and	r25, r18
+ 2e0:	9a bb       	out	0x1a, r25	; 26
+ 2e2:	9b b3       	in	r25, 0x1b	; 27
+ 2e4:	89 2b       	or	r24, r25
+ 2e6:	8b bb       	out	0x1b, r24	; 27
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 2e8:	80 e0       	ldi	r24, 0x00	; 0
+                break;
+
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+ 2ea:	08 95       	ret
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 2ec:	27 b3       	in	r18, 0x17	; 23
+ 2ee:	81 e0       	ldi	r24, 0x01	; 1
+ 2f0:	90 e0       	ldi	r25, 0x00	; 0
+ 2f2:	02 c0       	rjmp	.+4      	; 0x2f8 <MDIO_enuSetPinConfigration+0x154>
+ 2f4:	88 0f       	add	r24, r24
+ 2f6:	99 1f       	adc	r25, r25
+ 2f8:	6a 95       	dec	r22
+ 2fa:	e2 f7       	brpl	.-8      	; 0x2f4 <MDIO_enuSetPinConfigration+0x150>
+ 2fc:	98 2f       	mov	r25, r24
+ 2fe:	90 95       	com	r25
+ 300:	92 23       	and	r25, r18
+ 302:	97 bb       	out	0x17, r25	; 23
+ 304:	98 b3       	in	r25, 0x18	; 24
+ 306:	89 2b       	or	r24, r25
+ 308:	88 bb       	out	0x18, r24	; 24
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 30a:	80 e0       	ldi	r24, 0x00	; 0
+
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+ 30c:	08 95       	ret
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 30e:	24 b3       	in	r18, 0x14	; 20
+ 310:	81 e0       	ldi	r24, 0x01	; 1
+ 312:	90 e0       	ldi	r25, 0x00	; 0
+ 314:	02 c0       	rjmp	.+4      	; 0x31a <MDIO_enuSetPinConfigration+0x176>
+ 316:	88 0f       	add	r24, r24
+ 318:	99 1f       	adc	r25, r25
+ 31a:	6a 95       	dec	r22
+ 31c:	e2 f7       	brpl	.-8      	; 0x316 <MDIO_enuSetPinConfigration+0x172>
+ 31e:	98 2f       	mov	r25, r24
+ 320:	90 95       	com	r25
+ 322:	92 23       	and	r25, r18
+ 324:	94 bb       	out	0x14, r25	; 20
+ 326:	95 b3       	in	r25, 0x15	; 21
+ 328:	89 2b       	or	r24, r25
+ 32a:	85 bb       	out	0x15, r24	; 21
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 32c:	80 e0       	ldi	r24, 0x00	; 0
+            case MDIO_INPUT_PULLUP:
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+ 32e:	08 95       	ret
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 330:	21 b3       	in	r18, 0x11	; 17
+ 332:	81 e0       	ldi	r24, 0x01	; 1
+ 334:	90 e0       	ldi	r25, 0x00	; 0
+ 336:	02 c0       	rjmp	.+4      	; 0x33c <MDIO_enuSetPinConfigration+0x198>
+ 338:	88 0f       	add	r24, r24
+ 33a:	99 1f       	adc	r25, r25
+ 33c:	6a 95       	dec	r22
+ 33e:	e2 f7       	brpl	.-8      	; 0x338 <MDIO_enuSetPinConfigration+0x194>
+ 340:	98 2f       	mov	r25, r24
+ 342:	90 95       	com	r25
+ 344:	92 23       	and	r25, r18
+ 346:	91 bb       	out	0x11, r25	; 17
+ 348:	92 b3       	in	r25, 0x12	; 18
+ 34a:	89 2b       	or	r24, r25
+ 34c:	82 bb       	out	0x12, r24	; 18
+                break;
+
+            default:
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+ 34e:	80 e0       	ldi	r24, 0x00	; 0
+                switch (Copy_enuPortNum)
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+ 350:	08 95       	ret
+                    default: return MDIO_NOK;
+                }
+                break;
+
+            default:
+                return MDIO_NOK;
+ 352:	81 e0       	ldi	r24, 0x01	; 1
+ 354:	08 95       	ret
+                {
+                    case MDIO_PORTA: SET_BIT(DDRA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: SET_BIT(DDRB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: SET_BIT(DDRC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: SET_BIT(DDRD_REG, Copy_enuPinNum); break;
+                    default: return MDIO_NOK;
+ 356:	81 e0       	ldi	r24, 0x01	; 1
+ 358:	08 95       	ret
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); CLR_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); CLR_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); CLR_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); CLR_BIT(PORTD_REG, Copy_enuPinNum); break;
+                    default: return MDIO_NOK;
+ 35a:	81 e0       	ldi	r24, 0x01	; 1
+ 35c:	08 95       	ret
+                {
+                    case MDIO_PORTA: CLR_BIT(DDRA_REG, Copy_enuPinNum); SET_BIT(PORTA_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTB: CLR_BIT(DDRB_REG, Copy_enuPinNum); SET_BIT(PORTB_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTC: CLR_BIT(DDRC_REG, Copy_enuPinNum); SET_BIT(PORTC_REG, Copy_enuPinNum); break;
+                    case MDIO_PORTD: CLR_BIT(DDRD_REG, Copy_enuPinNum); SET_BIT(PORTD_REG, Copy_enuPinNum); break;
+                    default: return MDIO_NOK;
+ 35e:	81 e0       	ldi	r24, 0x01	; 1
+                return MDIO_NOK;
+        }
+        return MDIO_OK;
+    
+    return MDIO_NOK;
+}
+ 360:	08 95       	ret
+
+00000362 <EXT_Init>:
+}
+EXT_ERROR_Status_t EXT2_Disable()
+{
+	GICR &= ~(1 << INT2);
+	return EXT_OK;
+}
+ 362:	78 94       	sei
+ 364:	80 e0       	ldi	r24, 0x00	; 0
+ 366:	08 95       	ret
+
+00000368 <EXT0_Enable>:
+ 368:	8b b7       	in	r24, 0x3b	; 59
+ 36a:	80 64       	ori	r24, 0x40	; 64
+ 36c:	8b bf       	out	0x3b, r24	; 59
+ 36e:	80 e0       	ldi	r24, 0x00	; 0
+ 370:	08 95       	ret
+
+00000372 <EXT_SetEdge>:
+
+EXT_ERROR_Status_t EXT_SetEdge(EXT_Interrupt_t EXTIx, EXT_Edge_t edge)
+{
+	switch (EXTIx)
+ 372:	81 30       	cpi	r24, 0x01	; 1
+ 374:	69 f1       	breq	.+90     	; 0x3d0 <EXT_SetEdge+0x5e>
+ 376:	20 f0       	brcs	.+8      	; 0x380 <EXT_SetEdge+0xe>
+ 378:	82 30       	cpi	r24, 0x02	; 2
+ 37a:	09 f4       	brne	.+2      	; 0x37e <EXT_SetEdge+0xc>
+ 37c:	51 c0       	rjmp	.+162    	; 0x420 <__EEPROM_REGION_LENGTH__+0x20>
+ 37e:	5f c0       	rjmp	.+190    	; 0x43e <__EEPROM_REGION_LENGTH__+0x3e>
+	{
+		case EXT_INT0: 
+		switch (edge)
+ 380:	61 30       	cpi	r22, 0x01	; 1
+ 382:	71 f0       	breq	.+28     	; 0x3a0 <EXT_SetEdge+0x2e>
+ 384:	28 f0       	brcs	.+10     	; 0x390 <EXT_SetEdge+0x1e>
+ 386:	62 30       	cpi	r22, 0x02	; 2
+ 388:	99 f0       	breq	.+38     	; 0x3b0 <EXT_SetEdge+0x3e>
+ 38a:	63 30       	cpi	r22, 0x03	; 3
+ 38c:	c9 f0       	breq	.+50     	; 0x3c0 <EXT_SetEdge+0x4e>
+ 38e:	59 c0       	rjmp	.+178    	; 0x442 <__EEPROM_REGION_LENGTH__+0x42>
+		{
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCR, ISC00);
+ 390:	85 b7       	in	r24, 0x35	; 53
+ 392:	81 60       	ori	r24, 0x01	; 1
+ 394:	85 bf       	out	0x35, r24	; 53
+			SET_BIT(MCUCR, ISC01);
+ 396:	85 b7       	in	r24, 0x35	; 53
+ 398:	82 60       	ori	r24, 0x02	; 2
+ 39a:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 39c:	80 e0       	ldi	r24, 0x00	; 0
+		switch (edge)
+		{
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCR, ISC00);
+			SET_BIT(MCUCR, ISC01);
+			break;
+ 39e:	08 95       	ret
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCR, ISC00);
+ 3a0:	85 b7       	in	r24, 0x35	; 53
+ 3a2:	8e 7f       	andi	r24, 0xFE	; 254
+ 3a4:	85 bf       	out	0x35, r24	; 53
+			SET_BIT(MCUCR, ISC01);
+ 3a6:	85 b7       	in	r24, 0x35	; 53
+ 3a8:	82 60       	ori	r24, 0x02	; 2
+ 3aa:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 3ac:	80 e0       	ldi	r24, 0x00	; 0
+			SET_BIT(MCUCR, ISC01);
+			break;
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCR, ISC00);
+			SET_BIT(MCUCR, ISC01);
+			break;
+ 3ae:	08 95       	ret
+			case EXT_EDGE_BOTH:
+			SET_BIT(MCUCR, ISC00);
+ 3b0:	85 b7       	in	r24, 0x35	; 53
+ 3b2:	81 60       	ori	r24, 0x01	; 1
+ 3b4:	85 bf       	out	0x35, r24	; 53
+			CLR_BIT(MCUCR, ISC01);
+ 3b6:	85 b7       	in	r24, 0x35	; 53
+ 3b8:	8d 7f       	andi	r24, 0xFD	; 253
+ 3ba:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 3bc:	80 e0       	ldi	r24, 0x00	; 0
+			SET_BIT(MCUCR, ISC01);
+			break;
+			case EXT_EDGE_BOTH:
+			SET_BIT(MCUCR, ISC00);
+			CLR_BIT(MCUCR, ISC01);
+			break;
+ 3be:	08 95       	ret
+			case EXT_LOW_LEVEL:
+			CLR_BIT(MCUCR, ISC00);
+ 3c0:	85 b7       	in	r24, 0x35	; 53
+ 3c2:	8e 7f       	andi	r24, 0xFE	; 254
+ 3c4:	85 bf       	out	0x35, r24	; 53
+			CLR_BIT(MCUCR, ISC01);
+ 3c6:	85 b7       	in	r24, 0x35	; 53
+ 3c8:	8d 7f       	andi	r24, 0xFD	; 253
+ 3ca:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 3cc:	80 e0       	ldi	r24, 0x00	; 0
+			CLR_BIT(MCUCR, ISC01);
+			break;
+			case EXT_LOW_LEVEL:
+			CLR_BIT(MCUCR, ISC00);
+			CLR_BIT(MCUCR, ISC01);
+			break;
+ 3ce:	08 95       	ret
+			default:
+			return EXT_WRONG_EDGE;
+		}
+		break;
+		case EXT_INT1:
+		switch (edge)
+ 3d0:	61 30       	cpi	r22, 0x01	; 1
+ 3d2:	71 f0       	breq	.+28     	; 0x3f0 <EXT_SetEdge+0x7e>
+ 3d4:	28 f0       	brcs	.+10     	; 0x3e0 <EXT_SetEdge+0x6e>
+ 3d6:	62 30       	cpi	r22, 0x02	; 2
+ 3d8:	99 f0       	breq	.+38     	; 0x400 <__EEPROM_REGION_LENGTH__>
+ 3da:	63 30       	cpi	r22, 0x03	; 3
+ 3dc:	c9 f0       	breq	.+50     	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 3de:	33 c0       	rjmp	.+102    	; 0x446 <__EEPROM_REGION_LENGTH__+0x46>
+		{
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCR, ISC10);
+ 3e0:	85 b7       	in	r24, 0x35	; 53
+ 3e2:	84 60       	ori	r24, 0x04	; 4
+ 3e4:	85 bf       	out	0x35, r24	; 53
+			SET_BIT(MCUCR, ISC11);
+ 3e6:	85 b7       	in	r24, 0x35	; 53
+ 3e8:	88 60       	ori	r24, 0x08	; 8
+ 3ea:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 3ec:	80 e0       	ldi	r24, 0x00	; 0
+		switch (edge)
+		{
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCR, ISC10);
+			SET_BIT(MCUCR, ISC11);
+			break;
+ 3ee:	08 95       	ret
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCR, ISC10);
+ 3f0:	85 b7       	in	r24, 0x35	; 53
+ 3f2:	8b 7f       	andi	r24, 0xFB	; 251
+ 3f4:	85 bf       	out	0x35, r24	; 53
+			SET_BIT(MCUCR, ISC11);
+ 3f6:	85 b7       	in	r24, 0x35	; 53
+ 3f8:	88 60       	ori	r24, 0x08	; 8
+ 3fa:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 3fc:	80 e0       	ldi	r24, 0x00	; 0
+			SET_BIT(MCUCR, ISC11);
+			break;
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCR, ISC10);
+			SET_BIT(MCUCR, ISC11);
+			break;
+ 3fe:	08 95       	ret
+			case EXT_EDGE_BOTH:
+			SET_BIT(MCUCR, ISC10);
+ 400:	85 b7       	in	r24, 0x35	; 53
+ 402:	84 60       	ori	r24, 0x04	; 4
+ 404:	85 bf       	out	0x35, r24	; 53
+			CLR_BIT(MCUCR, ISC11);
+ 406:	85 b7       	in	r24, 0x35	; 53
+ 408:	87 7f       	andi	r24, 0xF7	; 247
+ 40a:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 40c:	80 e0       	ldi	r24, 0x00	; 0
+			SET_BIT(MCUCR, ISC11);
+			break;
+			case EXT_EDGE_BOTH:
+			SET_BIT(MCUCR, ISC10);
+			CLR_BIT(MCUCR, ISC11);
+			break;
+ 40e:	08 95       	ret
+			case EXT_LOW_LEVEL:
+			CLR_BIT(MCUCR, ISC10);
+ 410:	85 b7       	in	r24, 0x35	; 53
+ 412:	8b 7f       	andi	r24, 0xFB	; 251
+ 414:	85 bf       	out	0x35, r24	; 53
+			CLR_BIT(MCUCR, ISC11);
+ 416:	85 b7       	in	r24, 0x35	; 53
+ 418:	87 7f       	andi	r24, 0xF7	; 247
+ 41a:	85 bf       	out	0x35, r24	; 53
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 41c:	80 e0       	ldi	r24, 0x00	; 0
+			CLR_BIT(MCUCR, ISC11);
+			break;
+			case EXT_LOW_LEVEL:
+			CLR_BIT(MCUCR, ISC10);
+			CLR_BIT(MCUCR, ISC11);
+			break;
+ 41e:	08 95       	ret
+			default:
+			return EXT_WRONG_EDGE;
+		}
+		break;
+		case EXT_INT2:
+		switch (edge)
+ 420:	66 23       	and	r22, r22
+ 422:	19 f0       	breq	.+6      	; 0x42a <__EEPROM_REGION_LENGTH__+0x2a>
+ 424:	61 30       	cpi	r22, 0x01	; 1
+ 426:	31 f0       	breq	.+12     	; 0x434 <__EEPROM_REGION_LENGTH__+0x34>
+ 428:	10 c0       	rjmp	.+32     	; 0x44a <__EEPROM_REGION_LENGTH__+0x4a>
+		{
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCSR, ISC2);
+ 42a:	84 b7       	in	r24, 0x34	; 52
+ 42c:	80 64       	ori	r24, 0x40	; 64
+ 42e:	84 bf       	out	0x34, r24	; 52
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 430:	80 e0       	ldi	r24, 0x00	; 0
+		case EXT_INT2:
+		switch (edge)
+		{
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCSR, ISC2);
+			break;
+ 432:	08 95       	ret
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCSR, ISC2);
+ 434:	84 b7       	in	r24, 0x34	; 52
+ 436:	8f 7b       	andi	r24, 0xBF	; 191
+ 438:	84 bf       	out	0x34, r24	; 52
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+ 43a:	80 e0       	ldi	r24, 0x00	; 0
+			case EXT_EDGE_RISING:
+			SET_BIT(MCUCSR, ISC2);
+			break;
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCSR, ISC2);
+			break;
+ 43c:	08 95       	ret
+			default:
+			return EXT_WRONG_EDGE;
+		}
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+ 43e:	84 e0       	ldi	r24, 0x04	; 4
+ 440:	08 95       	ret
+			case EXT_LOW_LEVEL:
+			CLR_BIT(MCUCR, ISC00);
+			CLR_BIT(MCUCR, ISC01);
+			break;
+			default:
+			return EXT_WRONG_EDGE;
+ 442:	83 e0       	ldi	r24, 0x03	; 3
+ 444:	08 95       	ret
+			case EXT_LOW_LEVEL:
+			CLR_BIT(MCUCR, ISC10);
+			CLR_BIT(MCUCR, ISC11);
+			break;
+			default:
+			return EXT_WRONG_EDGE;
+ 446:	83 e0       	ldi	r24, 0x03	; 3
+ 448:	08 95       	ret
+			break;
+			case EXT_EDGE_FALLING:
+			CLR_BIT(MCUCSR, ISC2);
+			break;
+			default:
+			return EXT_WRONG_EDGE;
+ 44a:	83 e0       	ldi	r24, 0x03	; 3
+		break;
+		default:
+		return EXT_WRONG_INTERRUPT_NUMBER;
+	}
+	return EXT_OK;
+}
+ 44c:	08 95       	ret
+
+0000044e <__vector_1>:
+// Global variable to track LED state
+volatile u8 led_state = 0; // 0 = off, 1 = on
+
+// ISR for INT0
+ISR(INT0_vect)
+{
+ 44e:	1f 92       	push	r1
+ 450:	0f 92       	push	r0
+ 452:	0f b6       	in	r0, 0x3f	; 63
+ 454:	0f 92       	push	r0
+ 456:	11 24       	eor	r1, r1
+ 458:	2f 93       	push	r18
+ 45a:	3f 93       	push	r19
+ 45c:	4f 93       	push	r20
+ 45e:	5f 93       	push	r21
+ 460:	6f 93       	push	r22
+ 462:	7f 93       	push	r23
+ 464:	8f 93       	push	r24
+ 466:	9f 93       	push	r25
+ 468:	af 93       	push	r26
+ 46a:	bf 93       	push	r27
+ 46c:	ef 93       	push	r30
+ 46e:	ff 93       	push	r31
+
+	// Toggle the LED state
+	if (led_state == 0)
+ 470:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 474:	81 11       	cpse	r24, r1
+ 476:	09 c0       	rjmp	.+18     	; 0x48a <__vector_1+0x3c>
+	{
+		MDIO_enuSetPinValue(LED_PORT, LED_PIN, MDIO_HIGH); // Turn on LED
+ 478:	41 e0       	ldi	r20, 0x01	; 1
+ 47a:	60 e0       	ldi	r22, 0x00	; 0
+ 47c:	81 e0       	ldi	r24, 0x01	; 1
+ 47e:	0e 94 49 00 	call	0x92	; 0x92 <MDIO_enuSetPinValue>
+		led_state = 1; // Update state
+ 482:	81 e0       	ldi	r24, 0x01	; 1
+ 484:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 488:	07 c0       	rjmp	.+14     	; 0x498 <__vector_1+0x4a>
+	}
+	else
+	{
+		MDIO_enuSetPinValue(LED_PORT, LED_PIN, MDIO_LOW); // Turn off LED
+ 48a:	40 e0       	ldi	r20, 0x00	; 0
+ 48c:	60 e0       	ldi	r22, 0x00	; 0
+ 48e:	81 e0       	ldi	r24, 0x01	; 1
+ 490:	0e 94 49 00 	call	0x92	; 0x92 <MDIO_enuSetPinValue>
+		led_state = 0; // Update state
+ 494:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+	}
+}
+ 498:	ff 91       	pop	r31
+ 49a:	ef 91       	pop	r30
+ 49c:	bf 91       	pop	r27
+ 49e:	af 91       	pop	r26
+ 4a0:	9f 91       	pop	r25
+ 4a2:	8f 91       	pop	r24
+ 4a4:	7f 91       	pop	r23
+ 4a6:	6f 91       	pop	r22
+ 4a8:	5f 91       	pop	r21
+ 4aa:	4f 91       	pop	r20
+ 4ac:	3f 91       	pop	r19
+ 4ae:	2f 91       	pop	r18
+ 4b0:	0f 90       	pop	r0
+ 4b2:	0f be       	out	0x3f, r0	; 63
+ 4b4:	0f 90       	pop	r0
+ 4b6:	1f 90       	pop	r1
+ 4b8:	18 95       	reti
+
+000004ba <main>:
+
+int main(void)
+{
+	// Initialize the DIO driver
+	MDIO_enuSetPinConfigration(LED_PORT, LED_PIN, MDIO_OUTPUT); // Set LED pin as output
+ 4ba:	41 e0       	ldi	r20, 0x01	; 1
+ 4bc:	60 e0       	ldi	r22, 0x00	; 0
+ 4be:	81 e0       	ldi	r24, 0x01	; 1
+ 4c0:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <MDIO_enuSetPinConfigration>
+	MDIO_enuSetPinConfigration(BUTTON_PORT, BUTTON_PIN, MDIO_INPUT_PULLUP); // Set button pin as input with pull-up
+ 4c4:	42 e0       	ldi	r20, 0x02	; 2
+ 4c6:	62 e0       	ldi	r22, 0x02	; 2
+ 4c8:	83 e0       	ldi	r24, 0x03	; 3
+ 4ca:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <MDIO_enuSetPinConfigration>
+
+	// Initialize the EXT driver
+	EXT_Init();
+ 4ce:	0e 94 b1 01 	call	0x362	; 0x362 <EXT_Init>
+	EXT_SetEdge(EXT_INT0, EXT_EDGE_FALLING); // Set INT0 to trigger on falling edge
+ 4d2:	61 e0       	ldi	r22, 0x01	; 1
+ 4d4:	80 e0       	ldi	r24, 0x00	; 0
+ 4d6:	0e 94 b9 01 	call	0x372	; 0x372 <EXT_SetEdge>
+	EXT0_Enable(); // Enable INT0
+ 4da:	0e 94 b4 01 	call	0x368	; 0x368 <EXT0_Enable>
+ 4de:	ff cf       	rjmp	.-2      	; 0x4de <main+0x24>
+
+000004e0 <_exit>:
+ 4e0:	f8 94       	cli
+
+000004e2 <__stop_program>:
+ 4e2:	ff cf       	rjmp	.-2      	; 0x4e2 <__stop_program>
