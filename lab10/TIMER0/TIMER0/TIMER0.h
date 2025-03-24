@@ -1,6 +1,8 @@
 #ifndef TIMER0_H
 #define TIMER0_H
 
+// Function pointer type for callbacks
+typedef void (*Timer0_Callback)(void);
 
 // Timer0 Error Status Enumeration
 typedef enum {
@@ -18,26 +20,12 @@ typedef enum {
 	TIMER0_INVALID_OPERATION // Invalid operation for the current timer mode
 } TIMER0_ERROR_STATUS;
 
-// Function pointer type for callbacks
-typedef void (*Timer0_Callback)(void);
-
-#define TIMER0_BASE_ADDRESS 0x53
-// Timer0 register structure
-typedef struct {
-	volatile u8 TCCR0;  // Timer/Counter Control Register 0
-	volatile u8 TCNT0;  // Timer/Counter Register 0
-	volatile u8 OCR0;   // Output Compare Register 0
-	volatile u8 reserved; // Reserved byte (not used)
-	volatile u8 TIMSK;  // Timer/Counter Interrupt Mask Register
-	volatile u8 TIFR;   // Timer/Counter Interrupt Flag Register
-} Timer0_Registers;
-
-// Map the struct to the Timer0 base address
-#define TIMER0 ((volatile Timer0_Registers *)TIMER0_BASE_ADDRESS)
-
 
 
 // Function Prototypes
+
+void Timer0_EnableGlobalInterrupts(void);
+void Timer0_DisableGlobalInterrupts(void);
 
 // Initialization Functions
 TIMER0_ERROR_STATUS Timer0_Init_NormalMode(u8 prescaler);
